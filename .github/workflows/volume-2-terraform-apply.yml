@@ -1,8 +1,18 @@
 name: Volume 2 governed-cell plan and apply
 
 on:
+  pull_request:
+    paths:
+      - ".github/workflows/volume-2-terraform-apply.yml"
+      - "terraform/volume-2-platform/**"
   workflow_dispatch:
     inputs:
+      execution_mode:
+        description: Validate safely, or explicitly run the protected cloud plan/apply path
+        required: true
+        default: validate
+        type: choice
+        options: [validate, plan-and-apply]
       environment:
         description: GitHub environment and governed-cell lifecycle
         required: true
@@ -11,7 +21,6 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 concurrency:
   group: volume-2-governed-cell-${{ inputs.environment }}
@@ -20,24 +29,49 @@ concurrency:
 env:
   TF_IN_AUTOMATION: "true"
   TF_INPUT: "false"
-  TF_VAR_billing_account: ${{ secrets.BILLING_ACCOUNT }}
-  TF_VAR_folder_id: ${{ vars.FOLDER_ID }}
-  TF_VAR_project_id: ${{ vars.CELL_PROJECT_ID }}
-  TF_VAR_environment: ${{ inputs.environment }}
-  TF_VAR_region: ${{ vars.REGION }}
-  TF_VAR_approved_regions: ${{ vars.APPROVED_REGIONS_JSON }}
-  TF_VAR_owner_label: ${{ vars.OWNER_LABEL }}
-  TF_VAR_cost_centre: ${{ vars.COST_CENTRE }}
-  TF_VAR_budget_amount: ${{ vars.BUDGET_AMOUNT }}
-  TF_VAR_budget_currency: ${{ vars.BUDGET_CURRENCY }}
-  TF_VAR_create_firestore_database: "true"
-  TF_VAR_plan_project_roles: ${{ vars.PLAN_PROJECT_ROLES_JSON }}
-  TF_VAR_apply_project_roles: ${{ vars.APPLY_PROJECT_ROLES_JSON }}
 
 jobs:
+  validate-workflow:
+    if: github.event_name == 'pull_request' || inputs.execution_mode == 'validate'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
+        with:
+          terraform_version: "1.15.8"
+          terraform_wrapper: false
+      - name: Validate plan/apply configuration without cloud access
+        working-directory: terraform/volume-2-platform
+        run: |
+          terraform fmt -check -recursive
+          terraform init -backend=false -input=false
+          terraform validate
+          python3 -m unittest discover -s policies -v
+
   plan:
+    if: github.event_name == 'workflow_dispatch' && inputs.execution_mode == 'plan-and-apply'
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}-plan
+    env:
+      TF_VAR_billing_account: ${{ secrets.BILLING_ACCOUNT }}
+      TF_VAR_folder_id: ${{ vars.FOLDER_ID }}
+      TF_VAR_project_id: ${{ vars.CELL_PROJECT_ID }}
+      TF_VAR_environment: ${{ inputs.environment }}
+      TF_VAR_region: ${{ vars.REGION }}
+      TF_VAR_approved_regions: ${{ vars.APPROVED_REGIONS_JSON }}
+      TF_VAR_owner_label: ${{ vars.OWNER_LABEL }}
+      TF_VAR_cost_centre: ${{ vars.COST_CENTRE }}
+      TF_VAR_budget_amount: ${{ vars.BUDGET_AMOUNT }}
+      TF_VAR_budget_currency: ${{ vars.BUDGET_CURRENCY }}
+      TF_VAR_create_firestore_database: "true"
+      TF_VAR_plan_project_roles: ${{ vars.PLAN_PROJECT_ROLES_JSON }}
+      TF_VAR_apply_project_roles: ${{ vars.APPLY_PROJECT_ROLES_JSON }}
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
@@ -66,9 +100,13 @@ jobs:
           if-no-files-found: error
 
   apply:
+    if: github.event_name == 'workflow_dispatch' && inputs.execution_mode == 'plan-and-apply'
     needs: plan
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}-apply
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
@@ -89,4 +127,3 @@ jobs:
           sha256sum --check tfplan.sha256
           terraform init -input=false -backend-config="bucket=${{ vars.STATE_BUCKET }}" -backend-config="prefix=agent-platform/${{ inputs.environment }}/governed-cell"
           terraform apply -lock-timeout=5m tfplan
-

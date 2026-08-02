@@ -114,12 +114,12 @@ If organization policy forbids write-capable workflow tokens, keep the scheduled
 | Workflow | Trigger | Responsibility | Writes production/cloud state? |
 |---|---|---|---|
 | `docs-quality.yml` | Every pull request, push to `main`, manual | Repository structure, local tooling tests, and offline source metadata | No |
-| `upstream-docs-refresh.yml` | Weekly schedule, manual | Refresh upstream observation PR/artifact and synchronize the drift issue | Repository report branch and issue only |
+| `upstream-docs-refresh.yml` | Relevant PR, weekly schedule, manual | Validate upstream checks on PR; refresh the observation PR/artifact and synchronize the drift issue only on schedule/manual | Repository report branch and issue only outside PR validation |
 | `volume-2-platform-ci.yml` | Relevant PR/push | Admission service, delivery policy, labs, and Terraform validation | No |
 | `volume-3-adk-ci.yml` | Relevant PR/push | ADK graph, deterministic evaluation, compilation, delivery, and labs | No |
 | `volumes-4-10-ci.yml` | Relevant PR/push | Shared production kit and fail-closed qualification gates | No |
 | `volumes-11-15-ci.yml` | Relevant PR/manual | Registry, Gateway, Identity, Cloud Armor, Gemini Enterprise and Terraform tests | No |
-| `volume-2-terraform-apply.yml` | Manual dispatch with protected environment approval | Apply the exact reviewed Terraform plan using WIF identities | Yes, only the selected governed-cell environment |
+| `volume-2-terraform-apply.yml` | Relevant PR; manual dispatch defaults to `validate` | Validate without cloud access on PR/manual runs; apply the exact reviewed plan using WIF only when `plan-and-apply` is explicitly selected and the protected environment approves it | Yes, only during approved `plan-and-apply` dispatch to the selected governed-cell environment |
 
 Scheduled documentation maintenance never deploys Google Cloud resources.
 
