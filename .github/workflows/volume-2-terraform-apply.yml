@@ -29,19 +29,6 @@ concurrency:
 env:
   TF_IN_AUTOMATION: "true"
   TF_INPUT: "false"
-  TF_VAR_billing_account: ${{ secrets.BILLING_ACCOUNT }}
-  TF_VAR_folder_id: ${{ vars.FOLDER_ID }}
-  TF_VAR_project_id: ${{ vars.CELL_PROJECT_ID }}
-  TF_VAR_environment: ${{ inputs.environment }}
-  TF_VAR_region: ${{ vars.REGION }}
-  TF_VAR_approved_regions: ${{ vars.APPROVED_REGIONS_JSON }}
-  TF_VAR_owner_label: ${{ vars.OWNER_LABEL }}
-  TF_VAR_cost_centre: ${{ vars.COST_CENTRE }}
-  TF_VAR_budget_amount: ${{ vars.BUDGET_AMOUNT }}
-  TF_VAR_budget_currency: ${{ vars.BUDGET_CURRENCY }}
-  TF_VAR_create_firestore_database: "true"
-  TF_VAR_plan_project_roles: ${{ vars.PLAN_PROJECT_ROLES_JSON }}
-  TF_VAR_apply_project_roles: ${{ vars.APPLY_PROJECT_ROLES_JSON }}
 
 jobs:
   validate-workflow:
@@ -68,6 +55,20 @@ jobs:
     if: github.event_name == 'workflow_dispatch' && inputs.execution_mode == 'plan-and-apply'
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}-plan
+    env:
+      TF_VAR_billing_account: ${{ secrets.BILLING_ACCOUNT }}
+      TF_VAR_folder_id: ${{ vars.FOLDER_ID }}
+      TF_VAR_project_id: ${{ vars.CELL_PROJECT_ID }}
+      TF_VAR_environment: ${{ inputs.environment }}
+      TF_VAR_region: ${{ vars.REGION }}
+      TF_VAR_approved_regions: ${{ vars.APPROVED_REGIONS_JSON }}
+      TF_VAR_owner_label: ${{ vars.OWNER_LABEL }}
+      TF_VAR_cost_centre: ${{ vars.COST_CENTRE }}
+      TF_VAR_budget_amount: ${{ vars.BUDGET_AMOUNT }}
+      TF_VAR_budget_currency: ${{ vars.BUDGET_CURRENCY }}
+      TF_VAR_create_firestore_database: "true"
+      TF_VAR_plan_project_roles: ${{ vars.PLAN_PROJECT_ROLES_JSON }}
+      TF_VAR_apply_project_roles: ${{ vars.APPLY_PROJECT_ROLES_JSON }}
     permissions:
       contents: read
       id-token: write
