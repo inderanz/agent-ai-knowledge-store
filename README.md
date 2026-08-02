@@ -119,7 +119,7 @@ If organization policy forbids write-capable workflow tokens, keep the scheduled
 | `volume-3-adk-ci.yml` | Relevant PR/push | ADK graph, deterministic evaluation, compilation, delivery, and labs | No |
 | `volumes-4-10-ci.yml` | Relevant PR/push | Shared production kit and fail-closed qualification gates | No |
 | `volumes-11-15-ci.yml` | Relevant PR/manual | Registry, Gateway, Identity, Cloud Armor, Gemini Enterprise and Terraform tests | No |
-| `volume-2-terraform-apply.yml` | Relevant PR; manual dispatch with protected environment approval | Validate the delivery configuration without cloud access on PR; apply the exact reviewed plan using WIF only when manually dispatched | Yes, only during approved manual dispatch to the selected governed-cell environment |
+| `volume-2-terraform-apply.yml` | Relevant PR; manual dispatch defaults to `validate` | Validate without cloud access on PR/manual runs; apply the exact reviewed plan using WIF only when `plan-and-apply` is explicitly selected and the protected environment approves it | Yes, only during approved `plan-and-apply` dispatch to the selected governed-cell environment |
 
 Scheduled documentation maintenance never deploys Google Cloud resources.
 

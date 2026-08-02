@@ -7,6 +7,12 @@ on:
       - "terraform/volume-2-platform/**"
   workflow_dispatch:
     inputs:
+      execution_mode:
+        description: Validate safely, or explicitly run the protected cloud plan/apply path
+        required: true
+        default: validate
+        type: choice
+        options: [validate, plan-and-apply]
       environment:
         description: GitHub environment and governed-cell lifecycle
         required: true
@@ -39,7 +45,7 @@ env:
 
 jobs:
   validate-workflow:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' || inputs.execution_mode == 'validate'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -59,7 +65,7 @@ jobs:
           python3 -m unittest discover -s policies -v
 
   plan:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && inputs.execution_mode == 'plan-and-apply'
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}-plan
     permissions:
@@ -93,7 +99,7 @@ jobs:
           if-no-files-found: error
 
   apply:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && inputs.execution_mode == 'plan-and-apply'
     needs: plan
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}-apply
