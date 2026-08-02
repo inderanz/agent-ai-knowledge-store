@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools==83.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "enterprise-platform-admission"
+version = "0.1.0"
+description = "Deterministic workload admission for a governed Google Cloud agent platform"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "Flask==3.1.3",
+  "google-auth==2.53.0",
+  "google-cloud-firestore==2.28.0",
+  "grpcio==1.80.0",
+  "gunicorn==26.0.0",
+  "opentelemetry-api==1.42.1",
+  "opentelemetry-exporter-otlp-proto-grpc==1.42.1",
+  "opentelemetry-sdk==1.42.1",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "volumes": {
+    "11-agent-registry": ["catalog_owner", "api_and_location", "resource_model", "registration_provenance", "endpoint_health", "metadata_review", "iam_separation", "bindings", "gateway_resolution", "audit_and_drift", "recovery"],
+    "12-agent-gateway": ["topology", "registry_destinations", "agent_identity", "default_deny", "request_authz", "content_authz", "dry_run_analysis", "fail_closed", "logging_dashboard", "load_and_failure", "rollback"],
+    "13-agent-identity": ["identity_inventory", "trust_domain", "per_agent_principal", "default_caa", "least_privilege", "auth_mode_maturity", "auth_manager", "credential_non_disclosure", "audit_correlation", "revocation", "recovery"],
+    "14-cloud-armor": ["load_balancer_boundary", "backend_attachment", "policy_as_code", "waf_tuning", "rate_limits", "bot_decision", "preview_analysis", "request_logging", "metrics_alerts", "attack_test", "rollback"],
+    "15-gemini-enterprise-app": ["edition_and_location", "immutable_app_id", "cmek_before_creation", "data_store_inventory", "source_acl", "app_level_iam", "connector_maturity", "registry_gateway", "evaluation", "observability", "recovery_and_exit"]
+  }
+}

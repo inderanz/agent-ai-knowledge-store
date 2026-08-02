@@ -1,0 +1,90 @@
+name: Volumes 4-10 production kit
+
+on:
+  pull_request:
+    paths:
+      - "docs/volume-4-runtime/**"
+      - "docs/volume-5-security/**"
+      - "docs/volume-6-sre/**"
+      - "docs/volume-7-reference/**"
+      - "docs/volume-8-industries/**"
+      - "docs/volume-9-fde/**"
+      - "docs/volume-10-evolution/**"
+      - "examples/python/fde-production-kit/**"
+      - "delivery/volumes-4-10/**"
+      - "labs/volume-4-runtime/**"
+      - "labs/volume-5-security/**"
+      - "labs/volume-6-sre/**"
+      - "labs/volume-7-reference/**"
+      - "labs/volume-8-industries/**"
+      - "labs/volume-9-fde/**"
+      - "labs/volume-10-evolution/**"
+      - "operations/volume-4-runtime/**"
+      - "operations/volume-5-security/**"
+      - "operations/volume-6-sre/**"
+      - "operations/volume-7-reference/**"
+      - "operations/volume-8-industries/**"
+      - "operations/volume-9-fde/**"
+      - "operations/volume-10-evolution/**"
+      - "references/**"
+      - ".github/workflows/volumes-4-10-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/volume-4-runtime/**"
+      - "docs/volume-5-security/**"
+      - "docs/volume-6-sre/**"
+      - "docs/volume-7-reference/**"
+      - "docs/volume-8-industries/**"
+      - "docs/volume-9-fde/**"
+      - "docs/volume-10-evolution/**"
+      - "examples/python/fde-production-kit/**"
+      - "delivery/volumes-4-10/**"
+      - "labs/volume-4-runtime/**"
+      - "labs/volume-5-security/**"
+      - "labs/volume-6-sre/**"
+      - "labs/volume-7-reference/**"
+      - "labs/volume-8-industries/**"
+      - "labs/volume-9-fde/**"
+      - "labs/volume-10-evolution/**"
+      - "operations/volume-4-runtime/**"
+      - "operations/volume-5-security/**"
+      - "operations/volume-6-sre/**"
+      - "operations/volume-7-reference/**"
+      - "operations/volume-8-industries/**"
+      - "operations/volume-9-fde/**"
+      - "operations/volume-10-evolution/**"
+      - "references/**"
+      - ".github/workflows/volumes-4-10-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - name: Test production reference kit
+        env:
+          PYTHONPATH: examples/python/fde-production-kit/src
+        run: |
+          python3 -m unittest discover -s examples/python/fde-production-kit/tests -v
+          python3 -m compileall -q examples/python/fde-production-kit/src examples/python/fde-production-kit/tests
+      - name: Test qualification gates
+        run: |
+          python3 -m unittest discover -s delivery/volumes-4-10 -p 'test_*.py' -v
+          for record in labs/volume-{4-runtime,5-security,6-sre,7-reference,8-industries,9-fde,10-evolution}/qualification.example.json; do
+            if python3 delivery/volumes-4-10/validate_qualification.py "$record" --production; then
+              echo "Unsafe example unexpectedly passed production validation: $record" >&2
+              exit 1
+            fi
+          done
+      - name: Validate repository and source registry
+        run: |
+          python3 scripts/validate_repository.py
+          python3 scripts/check_sources.py --offline
+          python3 -m unittest discover -s tests -v

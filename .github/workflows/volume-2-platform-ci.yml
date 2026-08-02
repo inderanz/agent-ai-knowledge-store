@@ -1,0 +1,54 @@
+name: Volume 2 platform implementation
+
+on:
+  pull_request:
+    paths:
+      - "examples/python/platform-admission/**"
+      - "terraform/volume-2-platform/**"
+      - "delivery/volume-2-platform/**"
+      - "labs/volume-2-platform/**"
+      - ".github/workflows/volume-2-platform-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "examples/python/platform-admission/**"
+      - "terraform/volume-2-platform/**"
+      - "delivery/volume-2-platform/**"
+      - "labs/volume-2-platform/**"
+      - ".github/workflows/volume-2-platform-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
+        with:
+          terraform_version: "1.15.8"
+          terraform_wrapper: false
+      - name: Test admission service
+        run: |
+          python3 -m pip install --requirement examples/python/platform-admission/requirements.lock
+          python3 -m unittest discover -s examples/python/platform-admission/tests -v
+          python3 -m compileall -q examples/python/platform-admission/src examples/python/platform-admission/tests examples/python/platform-admission/main.py
+      - name: Test policy and delivery gates
+        run: |
+          python3 -m unittest discover -s terraform/volume-2-platform/policies -v
+          python3 -m unittest discover -s delivery/volume-2-platform -p 'test_*.py' -v
+          python3 -m unittest discover -s labs/volume-2-platform -p 'test_*.py' -v
+      - name: Render and validate delivery configuration
+        run: |
+          python3 delivery/volume-2-platform/render_config.py --environment-file delivery/volume-2-platform/customer.env.example --output /tmp/clouddeploy.yaml
+          python3 delivery/volume-2-platform/validate_delivery.py /tmp/clouddeploy.yaml delivery/volume-2-platform/service.yaml delivery/volume-2-platform/cloudbuild.yaml delivery/volume-2-platform/release.yaml
+      - name: Validate Terraform
+        working-directory: terraform/volume-2-platform
+        run: |
+          terraform fmt -check -recursive
+          terraform init -backend=false -input=false
+          terraform validate

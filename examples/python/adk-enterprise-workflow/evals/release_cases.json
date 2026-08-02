@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "minimum_pass_rate": 1.0,
+  "cases": [
+    {
+      "id": "allow-low-risk-read",
+      "principal": {"subject": "requester", "groups": ["change-executors"]},
+      "request": {"request_id": "eval-1", "tenant_id": "tenant-a", "action": "read-status", "target": "service-a", "justification": "Evaluate safe read", "risk": "low", "parameters": {}, "requested_by": "requester"},
+      "expected_status": "SUCCEEDED"
+    },
+    {
+      "id": "force-high-risk-approval",
+      "principal": {"subject": "requester", "groups": ["change-executors"]},
+      "request": {"request_id": "eval-2", "tenant_id": "tenant-a", "action": "rotate-key", "target": "service-a", "justification": "Evaluate approval route", "risk": "low", "parameters": {"generation": 8}, "requested_by": "requester"},
+      "expected_status": "AWAITING_APPROVAL"
+    },
+    {
+      "id": "deny-cross-tenant",
+      "principal": {"subject": "requester", "groups": ["change-executors"]},
+      "request": {"request_id": "eval-3", "tenant_id": "tenant-b", "action": "read-status", "target": "service-a", "justification": "Negative tenant test", "risk": "low", "parameters": {}, "requested_by": "requester"},
+      "expected_status": "DENIED"
+    },
+    {
+      "id": "deny-unknown-action",
+      "principal": {"subject": "requester", "groups": ["change-executors"]},
+      "request": {"request_id": "eval-4", "tenant_id": "tenant-a", "action": "delete-project", "target": "project-a", "justification": "Negative action test", "risk": "high", "parameters": {}, "requested_by": "requester"},
+      "expected_status": "DENIED"
+    },
+    {
+      "id": "unknown-write-needs-reconciliation",
+      "principal": {"subject": "requester", "groups": ["change-executors"]},
+      "request": {"request_id": "eval-5", "tenant_id": "tenant-a", "action": "read-status", "target": "service-a", "justification": "Unknown outcome test", "risk": "low", "parameters": {}, "requested_by": "requester"},
+      "tool_outcome": "UNKNOWN",
+      "expected_status": "RECONCILIATION_REQUIRED"
+    }
+  ]
+}

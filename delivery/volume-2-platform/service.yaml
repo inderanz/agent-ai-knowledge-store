@@ -1,0 +1,65 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: platform-admission
+  annotations:
+    run.googleapis.com/binary-authorization: default
+    run.googleapis.com/ingress: internal-and-cloud-load-balancing
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/maxScale: "20"
+        run.googleapis.com/execution-environment: gen2
+    spec:
+      serviceAccountName: placeholder@example.invalid # from-param: ${runtime_service_account}
+      containerConcurrency: 40
+      timeoutSeconds: 60
+      containers:
+        - name: admission
+          image: platform-admission
+          ports:
+            - name: http1
+              containerPort: 8080
+          env:
+            - name: GOOGLE_CLOUD_PROJECT
+              value: placeholder-project # from-param: ${project_id}
+            - name: IAP_EXPECTED_AUDIENCE
+              value: placeholder-audience # from-param: ${iap_audience}
+            - name: POLICY_PATH
+              value: /app/config/policy.example.json
+            - name: REPOSITORY_BACKEND
+              value: firestore
+            - name: SUBJECT_HASH_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: platform-admission-subject-hash-key
+                  key: "1" # from-param: ${subject_hash_secret_version}
+            - name: OTEL_ENABLED
+              value: "true"
+            - name: OTEL_REQUIRED
+              value: "true"
+            - name: OTEL_TRACE_SAMPLE_RATIO
+              value: "0.05"
+            - name: PLATFORM_ENVIRONMENT
+              value: dev # from-param: ${environment}
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 0
+            timeoutSeconds: 3
+            periodSeconds: 3
+            failureThreshold: 20
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            timeoutSeconds: 3
+            periodSeconds: 10
+            failureThreshold: 3

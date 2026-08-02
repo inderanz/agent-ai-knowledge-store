@@ -1,0 +1,41 @@
+steps:
+  - id: supply-chain-and-release
+    name: gcr.io/google.com/cloudsdktool/google-cloud-cli@sha256:39f4c48c083fb1d8d182eedc7de97545980afb646b1afdfec61a3f560969bc96
+    entrypoint: bash
+    args:
+      - -ceu
+      - |
+        image="${_IMAGE_URI}@${_IMAGE_DIGEST}"
+        resource_url="https://${_IMAGE_URI}@${_IMAGE_DIGEST}"
+        gcloud artifacts docker images describe "$$image" \
+          --project="${PROJECT_ID}" \
+          --show-provenance \
+          --format=json > /workspace/provenance.json
+        gcloud container analysis occurrences list \
+          --project="${PROJECT_ID}" \
+          --filter="resourceUrl=\"$$resource_url\"" \
+          --format=json > /workspace/occurrences.json
+        python3 delivery/volume-2-platform/supply_chain_gate.py \
+          /workspace/occurrences.json \
+          --provenance=/workspace/provenance.json \
+          --image="$$image" \
+          --build-id="${_SOURCE_BUILD_ID}" \
+          --revision="${_SOURCE_REVISION}"
+        short_revision="$$(printf '%s' '${_SOURCE_REVISION}' | cut -c1-12)"
+        short_build="$$(printf '%s' '${_SOURCE_BUILD_ID}' | cut -c1-8)"
+        gcloud deploy releases create "r-$${short_revision}-$${short_build}" \
+          --delivery-pipeline="${_PIPELINE}" \
+          --region="${LOCATION}" \
+          --skaffold-file=delivery/volume-2-platform/skaffold.yaml \
+          --images="platform-admission=$$image" \
+          --annotations="git_sha=${_SOURCE_REVISION},build_id=${_SOURCE_BUILD_ID}"
+substitutions:
+  _IMAGE_URI: australia-southeast1-docker.pkg.dev/example-agent-cell-dev/agent-platform/platform-admission
+  _IMAGE_DIGEST: sha256:replace-with-64-hex-characters
+  _SOURCE_BUILD_ID: replace-with-cloud-build-id
+  _SOURCE_REVISION: replace-with-40-character-git-sha
+  _PIPELINE: platform-admission
+serviceAccount: projects/${PROJECT_ID}/serviceAccounts/agent-platform-build@${PROJECT_ID}.iam.gserviceaccount.com
+options:
+  logging: CLOUD_LOGGING_ONLY
+  substitutionOption: MUST_MATCH

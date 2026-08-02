@@ -1,0 +1,40 @@
+name: Volumes 11-15 qualification
+
+on:
+  pull_request:
+    paths:
+      - "docs/volume-1[1-5]-*/**"
+      - "labs/volume-1[1-5]-*/**"
+      - "operations/volume-1[1-5]-*/**"
+      - "references/implementation/volume-1[1-5]-*"
+      - "examples/python/fde-production-kit/**"
+      - "delivery/volumes-11-15/**"
+      - "terraform/volumes-11-15-enterprise/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: PYTHONPATH=examples/python/fde-production-kit/src python -m unittest discover -s examples/python/fde-production-kit/tests -v
+      - run: python -m unittest discover -s delivery/volumes-11-15 -p 'test_*.py' -v
+      - run: python scripts/validate_repository.py
+      - run: python scripts/check_sources.py --offline
+      - uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e
+        with:
+          terraform_version: "1.15.8"
+      - name: Validate enterprise Terraform
+        working-directory: terraform/volumes-11-15-enterprise
+        run: |
+          terraform fmt -check -recursive
+          terraform init -backend=false -input=false
+          terraform validate
+          terraform test
+          python -m unittest discover -s policies -p 'test_*.py' -v

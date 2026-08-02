@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "volumes": {
+    "4-runtime": ["placement_adr", "region_and_maturity", "runtime_contract", "identity", "network_egress", "artifact_evidence", "capacity_and_quota", "session_compatibility", "canary_and_rollback", "restore_and_dr", "on_call"],
+    "5-security": ["threat_model", "identity_matrix", "business_authorization", "gateway_and_registry", "content_inspection", "network_egress", "data_and_privacy", "secrets", "supply_chain", "red_team", "revocation_and_incident"],
+    "6-sre": ["service_ownership", "telemetry_privacy", "sli_data", "slo_and_burn_alerts", "failure_injection", "idempotency_reconciliation", "capacity_and_cost", "restore", "dr", "incident_exercise", "continuous_improvement"],
+    "7-reference": ["catalog_owner", "primary_sources", "maturity_scope", "region_scope", "freshness", "machine_validation", "troubleshooting_lab", "change_trigger", "customer_values_separated"],
+    "8-industries": ["jurisdiction", "legal_risk_approval", "data_classification", "material_decision_boundary", "human_accountability", "residency_retention", "authoritative_system", "industry_failure_lab", "synthetic_data", "fallback_and_incident"],
+    "9-fde": ["engagement_charter", "discovery_outputs", "autonomy_assessment", "architecture_adrs", "thin_slice", "hardening", "six_reviews", "launch_decision", "operating_model", "handover_competency", "outcome_baseline"],
+    "10-evolution": ["source_registry", "release_drift", "impact_map", "dependency_qualification", "dual_version_tests", "state_and_session_migration", "model_evaluation", "inflight_routing", "rollback", "publication_reviews", "retirement_evidence"]
+  }
+}

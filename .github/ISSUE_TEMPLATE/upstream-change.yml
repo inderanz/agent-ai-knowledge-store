@@ -1,0 +1,41 @@
+name: Upstream change review
+description: Assess a Google product, API, sample, or release change
+title: "Upstream: "
+labels: ["upstream-change"]
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Official source URL
+    validations:
+      required: true
+  - type: input
+    id: observed
+    attributes:
+      label: Change observed on
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Documented change
+      description: Summarize without inferring undocumented behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Potentially affected chapters and artifacts
+    validations:
+      required: true
+  - type: checkboxes
+    id: review
+    attributes:
+      label: Review actions
+      options:
+        - label: Existing claims compared with upstream
+        - label: Code and Terraform revalidated where affected
+        - label: Maturity, region, quota, and known limitations rechecked
+        - label: Chapter status changed if re-review is required
+        - label: Source registry verification date updated

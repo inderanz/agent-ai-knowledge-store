@@ -1,0 +1,60 @@
+billing_account = "000000-000000-000000"
+folder_id       = "folders/123456789012"
+project_id      = "example-agent-cell-prod"
+environment     = "prod"
+region          = "australia-southeast1"
+approved_regions = [
+  "australia-southeast1",
+]
+owner_label   = "agent-platform"
+cost_centre   = "ai-platform"
+budget_amount   = 1000
+budget_currency = "AUD"
+
+notification_channels = []
+
+network_host_project_id = "example-network-host"
+runtime_subnetwork      = "agent-platform-prod"
+
+create_firestore_database = true
+
+# Set this in a production target stack when Cloud Deploy runs from another
+# project. The organization policy that permits cross-project service-account
+# use remains an explicit customer foundation decision.
+# cloud_deploy_control_plane = {
+#   project_id              = "example-agent-cell-dev"
+#   project_number          = "123456789012"
+#   release_service_account = "agent-platform-build@example-agent-cell-dev.iam.gserviceaccount.com"
+# }
+
+# Set this on the development/delivery stack for each cross-project Cloud Run
+# target that must deploy the shared immutable image.
+# artifact_consumers = [{
+#   project_id     = "example-agent-cell-prod"
+#   project_number = "234567890123"
+# }]
+
+plan_project_roles = [
+  "roles/browser",
+]
+
+apply_project_roles = [
+  "roles/artifactregistry.admin",
+  "roles/iam.serviceAccountAdmin",
+  "roles/logging.configWriter",
+  "roles/monitoring.editor",
+  "roles/run.admin",
+  "roles/secretmanager.admin",
+  "roles/serviceusage.serviceUsageAdmin",
+]
+
+github_wif = {
+  enabled                 = false
+  identity_project_id     = "example-identity-project"
+  identity_project_number = "123456789012"
+  pool_id                 = "agent-platform-ci"
+  provider_id             = "github"
+  repository_id           = "123456789"
+  apply_ref               = "refs/heads/main"
+  apply_environment_suffix = "-apply"
+}
