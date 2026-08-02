@@ -1,0 +1,4 @@
+# Qualified direct dependencies. Regenerate a hash-locked transitive lock in the
+# customer build environment; do not call this file a complete dependency lock.
+google-adk==2.6.1
+google-cloud-aiplatform[agent_engines,adk]==1.163.0

@@ -1,0 +1,18 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+steps:
+  - name: mirror.gcr.io/library/python:3.12.11-slim@sha256:47ae396f09c1303b8653019811a8498470603d7ffefc29cb07c88f1f8cb3d19f
+    id: qualify-control-planes
+    entrypoint: bash
+    args:
+      - -ceu
+      - |
+        export PYTHONPATH=examples/python/fde-production-kit/src
+        python3 -m unittest discover -s examples/python/fde-production-kit/tests -v
+        python3 -m unittest discover -s delivery/volumes-11-15 -p 'test_*.py' -v
+        python3 scripts/validate_repository.py
+        python3 scripts/check_sources.py --offline
+
+# This build validates source and qualification contracts only. A separately
+# authorized, identity-bound workflow performs customer cloud changes.

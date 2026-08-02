@@ -1,0 +1,25 @@
+name: Documentation quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  local-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - name: Validate repository
+        run: python3 scripts/validate_repository.py
+      - name: Test repository tooling
+        run: python3 -m unittest discover -s tests -v
+      - name: Validate source metadata
+        run: python3 scripts/check_sources.py --offline

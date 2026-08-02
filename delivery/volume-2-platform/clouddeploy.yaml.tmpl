@@ -1,0 +1,53 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+  name: platform-admission
+description: Governed promotion of the platform admission service
+serialPipeline:
+  stages:
+    - targetId: admission-dev
+      profiles: []
+    - targetId: admission-prod
+      profiles: []
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: admission-dev
+  labels:
+    environment: dev
+description: Development governed cell
+requireApproval: false
+run:
+  location: projects/__DEV_PROJECT_ID__/locations/__DEV_REGION__
+deployParameters:
+  environment: dev
+  project_id: __DEV_PROJECT_ID__
+  runtime_service_account: __DEV_RUNTIME_SERVICE_ACCOUNT__
+  iap_audience: __DEV_IAP_AUDIENCE__
+  subject_hash_secret_version: "__DEV_SUBJECT_HASH_SECRET_VERSION__"
+executionConfigs:
+  - usages: [RENDER, DEPLOY]
+    defaultPool:
+      serviceAccount: __DEV_DEPLOY_SERVICE_ACCOUNT__
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: admission-prod
+  labels:
+    environment: prod
+description: Production governed cell
+requireApproval: true
+run:
+  location: projects/__PROD_PROJECT_ID__/locations/__PROD_REGION__
+deployParameters:
+  environment: prod
+  project_id: __PROD_PROJECT_ID__
+  runtime_service_account: __PROD_RUNTIME_SERVICE_ACCOUNT__
+  iap_audience: __PROD_IAP_AUDIENCE__
+  subject_hash_secret_version: "__PROD_SUBJECT_HASH_SECRET_VERSION__"
+executionConfigs:
+  - usages: [RENDER, DEPLOY]
+    defaultPool:
+      serviceAccount: __PROD_DEPLOY_SERVICE_ACCOUNT__

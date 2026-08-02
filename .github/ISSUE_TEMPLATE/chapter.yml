@@ -1,0 +1,39 @@
+name: Chapter delivery
+description: Research, implement, and review one handbook chapter
+title: "Chapter: "
+labels: ["documentation"]
+body:
+  - type: input
+    id: volume
+    attributes:
+      label: Volume and chapter
+      placeholder: "Volume 3, Chapter 2"
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Customer outcome and scope
+      description: State what an FDE can do after this chapter and what is excluded.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Primary source plan
+      description: List official docs, source, samples, release notes, and standards to inspect before writing.
+    validations:
+      required: true
+  - type: checkboxes
+    id: gates
+    attributes:
+      label: Completion gates
+      options:
+        - label: Research review passed
+        - label: Architecture review passed
+        - label: Implementation review passed
+        - label: Security review passed
+        - label: Operations review passed
+        - label: Customer delivery review passed
+        - label: Examples and labs pass CI
+        - label: Source registry and status table updated

@@ -1,0 +1,78 @@
+project_id     = "customer-agent-platform-prod"
+agent_location = "us-central1"
+
+labels = {
+  environment         = "production"
+  owner               = "agent-platform"
+  data-classification = "confidential"
+  cost-centre         = "cc-1234"
+}
+
+registry_services = {
+  crm_mcp = {
+    kind         = "MCP_SERVER"
+    display_name = "CRM MCP server"
+    description  = "Approved customer CRM tools"
+    interfaces = [{
+      url              = "https://crm-mcp.corp.example.com/mcp"
+      protocol_binding = "HTTP_JSON"
+    }]
+    spec_type = "NO_SPEC"
+  }
+}
+
+# Add Registry bindings only after the Agent Identity provider exists and its
+# exact provider resource name is known. Keep source/target URNs customer-owned.
+registry_bindings = {}
+identity_providers = {}
+
+gateway = {
+  name                 = "enterprise-agent-egress"
+  description          = "Fail-closed governed egress for production agents"
+  governed_access_path = "AGENT_TO_ANYWHERE"
+  mcp_egress_grants    = {}
+  agent_egress_grants  = {}
+  endpoint_egress_grants = {}
+}
+
+cloud_armor = {
+  name                = "agent-app-edge"
+  description         = "Internet edge policy for customer agent applications"
+  default_rule_action = "deny(403)"
+  preconfigured_waf_rules = {
+    sqli = {
+      action            = "deny(403)"
+      priority          = 1000
+      description       = "SQL injection baseline in preview"
+      preview           = true
+      target_rule_set   = "sqli-v33-stable"
+      sensitivity_level = 2
+    }
+    xss = {
+      action            = "deny(403)"
+      priority          = 1010
+      description       = "Cross-site scripting baseline in preview"
+      preview           = true
+      target_rule_set   = "xss-v33-stable"
+      sensitivity_level = 2
+    }
+  }
+  source_rules              = {}
+  custom_cel_rules          = {}
+  threat_intelligence_rules = {}
+  enforcement_approved = false
+}
+
+gemini_enterprise = {
+  location     = "global"
+  engine_id    = "customer-enterprise-search"
+  display_name = "Customer Enterprise Search"
+  company_name = "Customer"
+  data_stores = {
+    enterprise_docs = {
+      display_name   = "Approved enterprise documents"
+      content_config = "CONTENT_REQUIRED"
+    }
+  }
+  app_users = ["group:gemini-enterprise-users@example.com"]
+}

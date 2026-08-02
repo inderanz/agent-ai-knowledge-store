@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "policy_version": "2026-08-02.1",
+  "deny_all": true,
+  "approved_regions": [
+    "australia-southeast1"
+  ],
+  "allowed_subjects": [],
+  "required_access_level": null,
+  "production_folder": "folders/0",
+  "nonproduction_folder": "folders/0",
+  "profiles": {
+    "pooled": {
+      "allowed_risk_tiers": ["low"],
+      "required_controls": ["dedicated-runtime-identity", "immutable-release"]
+    },
+    "domain": {
+      "allowed_risk_tiers": ["low", "moderate", "high"],
+      "required_controls": ["dedicated-runtime-identity", "central-audit-export", "quota-alerts"]
+    },
+    "dedicated-project": {
+      "allowed_risk_tiers": ["low", "moderate", "high", "regulated"],
+      "required_controls": ["dedicated-runtime-identity", "central-audit-export", "private-connectivity", "perimeter-qualification", "quota-alerts"]
+    }
+  }
+}

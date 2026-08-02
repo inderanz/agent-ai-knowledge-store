@@ -1,0 +1,30 @@
+steps:
+  - id: domain-tests
+    name: mirror.gcr.io/library/python:3.12.11-slim@sha256:47ae396f09c1303b8653019811a8498470603d7ffefc29cb07c88f1f8cb3d19f
+    entrypoint: python3
+    args: ["-m", "unittest", "discover", "-s", "examples/python/platform-admission/tests", "-v"]
+  - id: runtime-adapter-tests
+    name: mirror.gcr.io/library/python:3.12.11-slim@sha256:47ae396f09c1303b8653019811a8498470603d7ffefc29cb07c88f1f8cb3d19f
+    entrypoint: sh
+    args:
+      - -ceu
+      - |
+        pip install --no-cache-dir --requirement examples/python/platform-admission/requirements.lock
+        python3 -m unittest discover -s examples/python/platform-admission/tests -v
+  - id: build
+    name: gcr.io/cloud-builders/docker@sha256:f8b08c609fdc392ee6827ff3e1725e4980f7d96bde9f76f4695086405c96c147
+    args:
+      - build
+      - --file=examples/python/platform-admission/Dockerfile
+      - --tag=${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/platform-admission:${COMMIT_SHA}
+      - examples/python/platform-admission
+substitutions:
+  _REGION: australia-southeast1
+  _REPOSITORY: agent-platform
+serviceAccount: projects/${PROJECT_ID}/serviceAccounts/agent-platform-build@${PROJECT_ID}.iam.gserviceaccount.com
+images:
+  - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/platform-admission:${COMMIT_SHA}
+options:
+  logging: CLOUD_LOGGING_ONLY
+  requestedVerifyOption: VERIFIED
+  substitutionOption: MUST_MATCH

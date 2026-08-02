@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.DS_Store
+.terraform/
+*.tfstate
+*.tfstate.*
+tfplan
+tfplan.json
+tfplan.sha256
+delivery/volume-2-platform/rendered/
+occurrences.json
+source-check-report.json

@@ -1,0 +1,39 @@
+{
+  "verified_at": "2026-08-02",
+  "environment": "dev",
+  "agent_runtime": {
+    "project_id": "example-agent-cell-dev",
+    "region": "australia-southeast1"
+  },
+  "agent_registry": {
+    "project_id": "example-agent-cell-dev",
+    "region": "australia-southeast1"
+  },
+  "agent_gateway": {
+    "enabled": true,
+    "preview_terms_accepted": false,
+    "project_id": "example-agent-cell-dev",
+    "region": "australia-southeast1"
+  },
+  "agent_identity": {
+    "enabled": true,
+    "preview_terms_accepted": false
+  },
+  "managed_agents": {
+    "enabled": false,
+    "pre_ga_terms_accepted": false,
+    "contains_sensitive_or_confidential_data": false
+  },
+  "model_armor": {
+    "enabled": true,
+    "template_region": "australia-southeast1"
+  },
+  "owners": {
+    "security": "replace-me",
+    "privacy": "replace-me",
+    "legal": "replace-me",
+    "operations": "replace-me",
+    "product": "replace-me"
+  }
+}
+

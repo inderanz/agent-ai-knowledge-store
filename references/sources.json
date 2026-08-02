@@ -1,0 +1,761 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "adk-2-overview",
+      "title": "Welcome to ADK 2.0",
+      "url": "https://adk.dev/2.0/",
+      "tier": 1,
+      "owner": "volume-3-adk",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "adk-python-releases",
+      "title": "Google ADK Python releases",
+      "url": "https://github.com/google/adk-python/releases",
+      "tier": 2,
+      "owner": "volume-3-adk",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "adk-samples",
+      "title": "Google ADK samples",
+      "url": "https://github.com/google/adk-samples",
+      "tier": 3,
+      "owner": "volume-3-adk",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-platform-overview",
+      "title": "Gemini Enterprise Agent Platform overview",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-platform-release-notes",
+      "title": "Gemini Enterprise Agent Platform release notes",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes",
+      "tier": 1,
+      "owner": "volume-10-evolution",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "agent-runtime",
+      "title": "Agent Runtime",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime",
+      "tier": 1,
+      "owner": "volume-4-runtime",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-registry",
+      "title": "Agent Registry",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/agent-registry",
+      "tier": 1,
+      "owner": "volume-5-security",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-gateway",
+      "title": "Agent Gateway overview",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/gateways/agent-gateway-overview",
+      "tier": 1,
+      "owner": "volume-5-security",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-identity",
+      "title": "Agent Identity overview",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/agent-identity-overview",
+      "tier": 1,
+      "owner": "volume-5-security",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agentic-architecture-components",
+      "title": "Choose your agentic AI architecture components",
+      "url": "https://docs.cloud.google.com/architecture/choose-agentic-ai-architecture-components",
+      "tier": 4,
+      "owner": "volume-1-foundations",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "deploy-operate-generative-ai",
+      "title": "Deploy and operate generative AI applications",
+      "url": "https://docs.cloud.google.com/architecture/deploy-operate-generative-ai-applications",
+      "tier": 4,
+      "owner": "volume-1-foundations",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "adk-python-v2-6-1-source",
+      "title": "ADK Python source at v2.6.1",
+      "url": "https://github.com/google/adk-python/tree/v2.6.1",
+      "tier": 2,
+      "owner": "volume-1-foundations",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-starter-pack-reviewed",
+      "title": "Agent Starter Pack at reviewed commit",
+      "url": "https://github.com/GoogleCloudPlatform/agent-starter-pack/tree/659f047742457bd55e5db0edd088cf678b6f0669",
+      "tier": 3,
+      "owner": "volume-1-foundations",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "resource-hierarchy",
+      "title": "Google Cloud resource hierarchy",
+      "url": "https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "enterprise-foundations-blueprint",
+      "title": "Enterprise foundations blueprint",
+      "url": "https://cloud.google.com/architecture/security-foundations",
+      "tier": 4,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "shared-vpc",
+      "title": "Shared VPC overview",
+      "url": "https://docs.cloud.google.com/vpc/docs/shared-vpc",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "vpc-sc-perimeter-architecture",
+      "title": "VPC Service Controls perimeter architecture",
+      "url": "https://docs.cloud.google.com/vpc-service-controls/docs/architect-perimeters",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "vpc-sc-dry-run",
+      "title": "VPC Service Controls dry-run mode",
+      "url": "https://docs.cloud.google.com/vpc-service-controls/docs/dry-run-mode",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "agent-platform-locations",
+      "title": "Agent Platform supported locations",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/agent-locations",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "agent-gateway-setup-topology",
+      "title": "Set up Agent Gateway",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/gateways/set-up-agent-gateway",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "multi-tenant-agentic-ai",
+      "title": "Multi-tenant agentic AI system",
+      "url": "https://docs.cloud.google.com/architecture/multi-tenant-agentic-ai-system",
+      "tier": 4,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "multi-tenant-agentic-ai-sample",
+      "title": "Multi-tenant agentic AI Terraform sample at reviewed commit",
+      "url": "https://github.com/GoogleCloudPlatform/architecture-center-samples/tree/94e790edd2310cbdd5c63040e1773613d5af1293/terraform-google-multi-tenant-agentic-ai",
+      "tier": 3,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "cloud-foundation-fabric-v57",
+      "title": "Cloud Foundation Fabric v57.0.0",
+      "url": "https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/v57.0.0",
+      "tier": 2,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "eventarc-event-driven-architecture",
+      "title": "Event-driven architectures with Eventarc",
+      "url": "https://cloud.google.com/eventarc/standard/docs/event-driven-architectures",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "pubsub-event-driven-architecture",
+      "title": "Event-driven architecture with Pub/Sub",
+      "url": "https://docs.cloud.google.com/solutions/event-driven-architecture-pubsub",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "managed-agents-maturity",
+      "title": "Create and manage Managed Agents",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/managed-agents/create-manage",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "agent-runtime-deployment",
+      "title": "Deploy an agent to Agent Runtime",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/deploy-an-agent",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "iap-signed-headers",
+      "title": "Securing an app with IAP signed headers",
+      "url": "https://docs.cloud.google.com/iap/docs/signed-headers-howto",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "cloud-run-container-contract",
+      "title": "Cloud Run container runtime contract",
+      "url": "https://docs.cloud.google.com/run/docs/container-contract",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "cloud-run-service-identity",
+      "title": "Cloud Run service identity",
+      "url": "https://docs.cloud.google.com/run/docs/securing/service-identity",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "google-cloud-otlp-endpoints",
+      "title": "Send OTLP data to Google Cloud observability APIs",
+      "url": "https://docs.cloud.google.com/trace/docs/migrate-to-otlp-endpoints",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "opentelemetry-python-reviewed",
+      "title": "Google Cloud OpenTelemetry Python sample at reviewed commit",
+      "url": "https://github.com/GoogleCloudPlatform/opentelemetry-samples/tree/4cdacf711acb9d106fcc3a4ba5b0cd55cd192b26/python/otlptrace",
+      "tier": 3,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "cloud-run-python-reviewed",
+      "title": "Google Cloud Run Python sample at reviewed commit",
+      "url": "https://github.com/GoogleCloudPlatform/python-docs-samples/tree/19f0efaa4a58007c9aa17ffe70e8101e6810abe6/run/helloworld",
+      "tier": 3,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "cloud-deploy-run-targets",
+      "title": "Deploy a Cloud Run service with Cloud Deploy",
+      "url": "https://docs.cloud.google.com/deploy/docs/run-targets",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "cloud-deploy-service-accounts",
+      "title": "Cloud Deploy service accounts",
+      "url": "https://docs.cloud.google.com/deploy/docs/cloud-deploy-service-account",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "cloud-build-user-specified-identity",
+      "title": "Configure user-specified Cloud Build service accounts",
+      "url": "https://docs.cloud.google.com/build/docs/securing-builds/configure-user-specified-service-accounts",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "cloud-deploy-samples-reviewed",
+      "title": "Google Cloud Deploy samples at reviewed commit",
+      "url": "https://github.com/GoogleCloudPlatform/cloud-deploy-samples/tree/3ea194851eaf3451c0d59ca211f5176e4070b3d6",
+      "tier": 3,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "cloud-build-provenance",
+      "title": "Generate and validate Cloud Build provenance",
+      "url": "https://docs.cloud.google.com/build/docs/securing-builds/generate-validate-build-provenance",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "artifact-analysis-container-scanning",
+      "title": "Artifact Analysis container scanning overview",
+      "url": "https://docs.cloud.google.com/artifact-analysis/docs/container-scanning-overview",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "cloud-run-binary-authorization",
+      "title": "Enable Binary Authorization for Cloud Run",
+      "url": "https://docs.cloud.google.com/binary-authorization/docs/run/enabling-binauthz-cloud-run",
+      "tier": 1,
+      "owner": "volume-2-platform",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "adk-graph-workflows-reviewed",
+      "title": "ADK graph workflow documentation at reviewed commit",
+      "url": "https://github.com/google/adk-docs/blob/308c7831800d4543ac230f5a64da335796575135/docs/graphs/index.md",
+      "tier": 2,
+      "owner": "volume-3-adk",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "adk-workflow-source-v2-6-1",
+      "title": "ADK workflow implementation at v2.6.1 release commit",
+      "url": "https://github.com/google/adk-python/tree/740582e9f283cd23ff5cec1389400b422513f765/src/google/adk/workflow",
+      "tier": 2,
+      "owner": "volume-3-adk",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "adk-evaluation",
+      "title": "ADK evaluation guide",
+      "url": "https://adk.dev/evaluate/",
+      "tier": 1,
+      "owner": "volume-3-adk",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-runtime-adk-quickstart",
+      "title": "Develop and deploy ADK agents on Agent Runtime",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/runtime/quickstart-adk",
+      "tier": 1,
+      "owner": "volume-3-adk",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-platform-sessions-adk",
+      "title": "Manage Agent Platform Sessions with ADK",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/sessions/manage-with-adk",
+      "tier": 1,
+      "owner": "volume-3-adk",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-runtime-contract",
+      "title": "Agent Runtime custom container contract",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/runtime-contract",
+      "tier": 1,
+      "owner": "volume-4-runtime",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-runtime-psc-interface",
+      "title": "Private Service Connect interface for Agent Runtime",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/private-service-connect-interface",
+      "tier": 1,
+      "owner": "volume-4-runtime",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-runtime-revisions",
+      "title": "Manage Agent Runtime revisions and traffic",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/manage-revisions-and-traffic",
+      "tier": 1,
+      "owner": "volume-4-runtime",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "model-armor-agent-gateway",
+      "title": "Configure Model Armor on Agent Gateway",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/configure-model-armor",
+      "tier": 1,
+      "owner": "volume-5-security",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "workload-identity-federation",
+      "title": "Workload Identity Federation",
+      "url": "https://docs.cloud.google.com/iam/docs/workload-identity-federation",
+      "tier": 1,
+      "owner": "volume-5-security",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "agent-platform-threat-detection",
+      "title": "Agent Platform Threat Detection overview",
+      "url": "https://docs.cloud.google.com/security-command-center/docs/agent-platform-threat-detection-overview",
+      "tier": 1,
+      "owner": "volume-5-security",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-observability",
+      "title": "Agent Observability overview",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/optimize/observability/overview",
+      "tier": 1,
+      "owner": "volume-6-sre",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-online-evaluation",
+      "title": "Continuous evaluation with online monitors",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/optimize/evaluation/evaluate-online",
+      "tier": 1,
+      "owner": "volume-6-sre",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "cloud-monitoring-slo",
+      "title": "Cloud Monitoring service SLO concepts",
+      "url": "https://docs.cloud.google.com/stackdriver/docs/solutions/slo-monitoring",
+      "tier": 1,
+      "owner": "volume-6-sre",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "ai-ml-reliability",
+      "title": "Well-Architected AI and ML reliability perspective",
+      "url": "https://docs.cloud.google.com/architecture/framework/perspectives/ai-ml/reliability",
+      "tier": 4,
+      "owner": "volume-6-sre",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "agent-platform-data-residency",
+      "title": "Agent Platform data residency",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/data-residency",
+      "tier": 1,
+      "owner": "volume-7-reference",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "agent-platform-quotas",
+      "title": "Agent Platform quotas and limits",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/machine-learning/quotas",
+      "tier": 1,
+      "owner": "volume-7-reference",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "google-cloud-compliance",
+      "title": "Google Cloud Compliance Resource Center",
+      "url": "https://cloud.google.com/compliance",
+      "tier": 1,
+      "owner": "volume-8-industries",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "financial-services-perspective",
+      "title": "Well-Architected financial services perspective",
+      "url": "https://docs.cloud.google.com/architecture/framework/perspectives/fsi",
+      "tier": 4,
+      "owner": "volume-8-industries",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "google-cloud-hipaa-guide",
+      "title": "HIPAA compliance on Google Cloud",
+      "url": "https://cloud.google.com/security/compliance/hipaa",
+      "tier": 1,
+      "owner": "volume-8-industries",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "cloud-healthcare-api",
+      "title": "Cloud Healthcare API overview",
+      "url": "https://docs.cloud.google.com/healthcare-api/docs/introduction",
+      "tier": 1,
+      "owner": "volume-8-industries",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "google-cloud-adoption-framework",
+      "title": "Google Cloud Adoption Framework",
+      "url": "https://cloud.google.com/adoption-framework",
+      "tier": 4,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "well-architected-operational-excellence",
+      "title": "Well-Architected operational excellence pillar",
+      "url": "https://docs.cloud.google.com/architecture/framework/operational-excellence",
+      "tier": 4,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "agent-platform-model-lifecycle",
+      "title": "Agent Platform model versions and lifecycle",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions",
+      "tier": 1,
+      "owner": "volume-10-evolution",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "agent-platform-open-model-deprecations",
+      "title": "Agent Platform open model deprecations",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/deprecations/open-models",
+      "tier": 1,
+      "owner": "volume-10-evolution",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "agent-platform-gemini-migration",
+      "title": "Migrate to the latest Gemini models",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/migrate",
+      "tier": 1,
+      "owner": "volume-10-evolution",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-platform-sdk-v1-163-0",
+      "title": "Google Cloud Agent Platform Python SDK v1.163.0",
+      "url": "https://github.com/googleapis/python-aiplatform/releases/tag/v1.163.0",
+      "tier": 2,
+      "owner": "volume-10-evolution",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-registry-overview-2026",
+      "title": "Agent Registry overview",
+      "url": "https://docs.cloud.google.com/agent-registry/overview",
+      "tier": 1,
+      "owner": "volume-11-agent-registry",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-registry-data-model",
+      "title": "Agent Registry data model",
+      "url": "https://docs.cloud.google.com/agent-registry/data-model",
+      "tier": 1,
+      "owner": "volume-11-agent-registry",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-registry-adk-resolution",
+      "title": "Resolve endpoints and build ADK orchestrators",
+      "url": "https://docs.cloud.google.com/agent-registry/resolve-endpoints-and-build-orchestrators",
+      "tier": 1,
+      "owner": "volume-11-agent-registry",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "google-skills-reviewed",
+      "title": "Google skills at reviewed commit",
+      "url": "https://github.com/google/skills/tree/41f503f7d7f878bf77f0700487d60cf0490d72fd",
+      "tier": 3,
+      "owner": "volume-11-agent-registry",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "agent-gateway-delegated-auth",
+      "title": "Delegate Agent Gateway authorization",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/gateways/delegate-authorization",
+      "tier": 1,
+      "owner": "volume-12-agent-gateway",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-gateway-monitoring",
+      "title": "Monitor Agent Gateway",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/gateways/monitor-agent-gateway",
+      "tier": 1,
+      "owner": "volume-12-agent-gateway",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "agent-identity-runtime",
+      "title": "Use Agent Identity with Agent Runtime",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/agent-identity",
+      "tier": 1,
+      "owner": "volume-13-agent-identity",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "cloud-armor-overview",
+      "title": "Cloud Armor overview",
+      "url": "https://docs.cloud.google.com/armor/docs/cloud-armor-overview",
+      "tier": 1,
+      "owner": "volume-14-cloud-armor",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "cloud-armor-policy-overview",
+      "title": "Cloud Armor security policy overview",
+      "url": "https://docs.cloud.google.com/armor/docs/security-policy-overview",
+      "tier": 1,
+      "owner": "volume-14-cloud-armor",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "cloud-armor-rate-limiting",
+      "title": "Cloud Armor rate limiting overview",
+      "url": "https://docs.cloud.google.com/armor/docs/rate-limiting-overview",
+      "tier": 1,
+      "owner": "volume-14-cloud-armor",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "terraform-google-cloud-armor-reviewed",
+      "title": "GoogleCloudPlatform Cloud Armor Terraform module at reviewed commit",
+      "url": "https://github.com/GoogleCloudPlatform/terraform-google-cloud-armor/tree/0757d7ca6ccc4b530337f79050f715ca14677c5a",
+      "tier": 3,
+      "owner": "volume-14-cloud-armor",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "gemini-enterprise-create-app",
+      "title": "Create a Gemini Enterprise app",
+      "url": "https://docs.cloud.google.com/gemini/enterprise/docs/create-app",
+      "tier": 1,
+      "owner": "volume-15-gemini-enterprise-app",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "gemini-enterprise-apps-data-stores",
+      "title": "Gemini Enterprise apps and data stores",
+      "url": "https://docs.cloud.google.com/gemini/enterprise/docs/apps-data-stores",
+      "tier": 1,
+      "owner": "volume-15-gemini-enterprise-app",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "gemini-enterprise-observability-settings",
+      "title": "Manage Gemini Enterprise observability settings",
+      "url": "https://docs.cloud.google.com/gemini/enterprise/docs/manage-observability-settings",
+      "tier": 1,
+      "owner": "volume-15-gemini-enterprise-app",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "gemini-enterprise-locations",
+      "title": "Gemini Enterprise locations and data residency",
+      "url": "https://docs.cloud.google.com/gemini/enterprise/docs/locations",
+      "tier": 1,
+      "owner": "volume-15-gemini-enterprise-app",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "googlecloudplatform-generative-ai-reviewed-2026",
+      "title": "GoogleCloudPlatform generative-ai at reviewed commit",
+      "url": "https://github.com/GoogleCloudPlatform/generative-ai/tree/37e4bff04b74df8c48be32838e48c6980d78e914",
+      "tier": 3,
+      "owner": "volume-15-gemini-enterprise-app",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "googleapis-reviewed-2026-08-02",
+      "title": "Official Google API definitions at reviewed commit",
+      "url": "https://github.com/googleapis/googleapis/tree/3f9c9d72cb20768ca4ac9f12030faaf43b13c231",
+      "tier": 2,
+      "owner": "volumes-11-15",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    }
+  ]
+}

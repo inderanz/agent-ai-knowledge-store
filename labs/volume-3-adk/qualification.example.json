@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "environment": "sandbox",
+  "project_id": "customer-agents-123",
+  "location": "us-central1",
+  "adk_version": "2.6.1",
+  "agent_platform_sdk_version": "1.163.0",
+  "source_revision": "REPLACE_WITH_IMMUTABLE_REVISION",
+  "data_classification": "synthetic",
+  "owners": {
+    "product": "REPLACE",
+    "security": "REPLACE",
+    "privacy": "REPLACE",
+    "operations": "REPLACE"
+  },
+  "controls": {
+    "region_currently_supported": false,
+    "runtime_identity_least_privilege_reviewed": false,
+    "durable_tool_ledger_configured": false,
+    "authenticated_approval_provider_configured": false,
+    "segregation_of_duties_tested": false,
+    "managed_session_retention_approved": false,
+    "event_schema_migration_tested": false,
+    "redaction_and_log_sinks_tested": false,
+    "online_eval_dataset_approved": false,
+    "deterministic_eval_passed": true,
+    "load_and_quota_tested": false,
+    "restore_and_resume_tested": false,
+    "rollback_tested": false,
+    "kill_switch_tested": false,
+    "on_call_and_incident_runbook_exercised": false
+  },
+  "acceptances": {
+    "known_graph_streaming_limit_accepted": false,
+    "residual_model_risk_accepted": false,
+    "cost_envelope_approved": false
+  }
+}

@@ -1,0 +1,60 @@
+name: Volume 3 ADK implementation
+
+on:
+  pull_request:
+    paths:
+      - "docs/volume-3-adk/**"
+      - "examples/python/adk-enterprise-workflow/**"
+      - "delivery/volume-3-adk/**"
+      - "labs/volume-3-adk/**"
+      - "operations/volume-3-adk/**"
+      - "references/implementation/volume-3-adk.md"
+      - ".github/workflows/volume-3-adk-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/volume-3-adk/**"
+      - "examples/python/adk-enterprise-workflow/**"
+      - "delivery/volume-3-adk/**"
+      - "labs/volume-3-adk/**"
+      - "operations/volume-3-adk/**"
+      - "references/implementation/volume-3-adk.md"
+      - ".github/workflows/volume-3-adk-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: examples/python/adk-enterprise-workflow/requirements.txt
+      - name: Run deterministic workflow and evaluation gates
+        env:
+          PYTHONPATH: examples/python/adk-enterprise-workflow/src:examples/python/adk-enterprise-workflow
+        run: |
+          python3 -m unittest \
+            examples/python/adk-enterprise-workflow/tests/test_models.py \
+            examples/python/adk-enterprise-workflow/tests/test_workflow.py \
+            examples/python/adk-enterprise-workflow/tests/test_telemetry.py \
+            examples/python/adk-enterprise-workflow/tests/test_evaluation.py \
+            examples/python/adk-enterprise-workflow/tests/test_deploy.py -v
+          python3 examples/python/adk-enterprise-workflow/evaluate_release.py \
+            examples/python/adk-enterprise-workflow/evals/release_cases.json \
+            --output /tmp/volume-3-deterministic-eval.json
+      - name: Compile graph against exact qualified ADK
+        run: |
+          python3 -m pip install --no-cache-dir 'google-adk==2.6.1'
+          PYTHONPATH=examples/python/adk-enterprise-workflow/src \
+            python3 -m unittest examples/python/adk-enterprise-workflow/tests/test_adk_graph.py -v
+      - name: Validate delivery and qualification gates
+        run: |
+          python3 delivery/volume-3-adk/validate_delivery.py delivery/volume-3-adk/cloudbuild.yaml
+          python3 -m unittest discover -s delivery/volume-3-adk -p 'test_*.py' -v
+          python3 -m unittest discover -s labs/volume-3-adk -p 'test_*.py' -v
+          python3 -m compileall -q examples/python/adk-enterprise-workflow delivery/volume-3-adk labs/volume-3-adk

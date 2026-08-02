@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-08-02",
+  "baselines": {
+    "python": {
+      "policy": ">=3.12",
+      "note": "Qualify an exact minor version in each runnable example."
+    },
+    "google-adk-python": {
+      "version": "2.6.1",
+      "release_url": "https://github.com/google/adk-python/releases/tag/v2.6.1",
+      "commit": "740582e9f283cd23ff5cec1389400b422513f765",
+      "published_at": "2026-07-31T21:14:57Z"
+    },
+    "google-cloud-aiplatform": {
+      "version": "1.163.0",
+      "commit": "6845eaf9c5513198f6eba11d2c091a4a29c35565",
+      "release_url": "https://github.com/googleapis/python-aiplatform/releases/tag/v1.163.0",
+      "published_at": "2026-07-28T17:10:34Z",
+      "note": "Package index checked 2026-08-02; customer qualification remains required. Current Agent Runtime BYOC documentation requires >=1.144."
+    },
+    "google-adk-docs": {
+      "commit": "308c7831800d4543ac230f5a64da335796575135",
+      "committed_at": "2026-07-31T23:18:26Z"
+    },
+    "google-adk-samples": {
+      "commit": "739bb34c0bd22516dbbda88f3e5a9f9375bb963c",
+      "committed_at": "2026-07-29T23:28:52Z"
+    },
+    "googlecloudplatform-agent-starter-pack": {
+      "version": "0.41.3",
+      "commit": "659f047742457bd55e5db0edd088cf678b6f0669",
+      "release_url": "https://github.com/GoogleCloudPlatform/agent-starter-pack/releases/tag/v0.41.3"
+    },
+    "googlecloudplatform-cloud-foundation-fabric": {
+      "version": "57.0.0",
+      "commit": "e70658563e38197eebc8e5399b7f0be828c4dab1",
+      "release_url": "https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/releases/tag/v57.0.0",
+      "published_at": "2026-07-17T08:35:08Z"
+    },
+    "googlecloudplatform-architecture-center-samples": {
+      "commit": "3e8f61ccae7f06f737932324a961409e61d8b31e",
+      "committed_at": "2026-07-22T05:10:16Z"
+    },
+    "multi-tenant-agentic-ai-sample": {
+      "commit": "94e790edd2310cbdd5c63040e1773613d5af1293",
+      "committed_at": "2026-07-18T23:28:25Z",
+      "source_url": "https://github.com/GoogleCloudPlatform/architecture-center-samples/tree/94e790edd2310cbdd5c63040e1773613d5af1293/terraform-google-multi-tenant-agentic-ai"
+    },
+    "terraform": {
+      "version": "1.15.8",
+      "release_url": "https://github.com/hashicorp/terraform/releases/tag/v1.15.8",
+      "published_at": "2026-07-08T17:45:09Z"
+    },
+    "terraform-provider-google": {
+      "version": "7.42.0",
+      "release_url": "https://github.com/hashicorp/terraform-provider-google/releases/tag/v7.42.0",
+      "published_at": "2026-07-28T18:59:19Z"
+    },
+    "googlecloudplatform-terraform-google-cloud-armor": {
+      "version": "8.1.1",
+      "commit": "249fb6bc647260941136c04520a9bae4d103a78d",
+      "release_url": "https://github.com/GoogleCloudPlatform/terraform-google-cloud-armor/releases/tag/v8.1.1",
+      "published_at": "2026-07-15T16:30:00Z"
+    },
+    "googlecloudplatform-opentelemetry-samples": {
+      "commit": "4cdacf711acb9d106fcc3a4ba5b0cd55cd192b26",
+      "committed_at": "2026-07-28",
+      "source_url": "https://github.com/GoogleCloudPlatform/opentelemetry-samples/tree/4cdacf711acb9d106fcc3a4ba5b0cd55cd192b26/python/otlptrace"
+    },
+    "googlecloudplatform-python-docs-samples": {
+      "commit": "19f0efaa4a58007c9aa17ffe70e8101e6810abe6",
+      "source_url": "https://github.com/GoogleCloudPlatform/python-docs-samples/tree/19f0efaa4a58007c9aa17ffe70e8101e6810abe6/run/helloworld"
+    },
+    "googlecloudplatform-cloud-deploy-samples": {
+      "commit": "3ea194851eaf3451c0d59ca211f5176e4070b3d6",
+      "source_url": "https://github.com/GoogleCloudPlatform/cloud-deploy-samples/tree/3ea194851eaf3451c0d59ca211f5176e4070b3d6"
+    },
+    "platform-admission-python-dependencies": {
+      "python": "3.12.11",
+      "flask": "3.1.3",
+      "google-auth": "2.53.0",
+      "google-cloud-firestore": "2.28.0",
+      "gunicorn": "26.0.0",
+      "opentelemetry": "1.42.1"
+    },
+    "github-actions": {
+      "actions-checkout": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "actions-setup-python": "ece7cb06caefa5fff74198d8649806c4678c61a1",
+      "google-github-actions-auth": "7c6bc770dae815cd3e89ee6cdf493a5fab2cc093",
+      "google-github-actions-setup-gcloud": "aa5489c8933f4cc7a4f7d45035b3b1440c9c10db",
+      "hashicorp-setup-terraform": "dfe3c3f87815947d99a8997f908cb6525fc44e9e"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+name: Automated upstream documentation maintenance
+
+on:
+  schedule:
+    - cron: "23 19 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: upstream-documentation-maintenance
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Render observed upstream status
+        run: python3 scripts/render_upstream_status.py
+
+      - name: Check source reachability, freshness, and release drift
+        id: source-check
+        continue-on-error: true
+        run: |
+          mkdir -p artifacts
+          set +e
+          python3 scripts/check_sources.py > artifacts/upstream-source-check.txt 2>&1
+          result=$?
+          set -e
+          cat artifacts/upstream-source-check.txt
+          echo "exit_code=${result}" >> "${GITHUB_OUTPUT}"
+
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: upstream-documentation-status
+          path: |
+            references/UPSTREAM_STATUS.md
+            artifacts/upstream-source-check.txt
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Open or update the generated-status pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- references/UPSTREAM_STATUS.md; then
+            echo "Generated upstream status is unchanged."
+            exit 0
+          fi
+
+          branch="automation/upstream-status"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "${branch}"
+          git add references/UPSTREAM_STATUS.md
+          git commit -m "docs: refresh observed upstream status"
+          git fetch origin "${branch}" || true
+          git push --force-with-lease origin "HEAD:${branch}"
+
+          existing_pr="$(gh pr list --state open --head "${branch}" --json url --jq '.[0].url // empty')"
+          if [ -z "${existing_pr}" ]; then
+            gh pr create \
+              --base main \
+              --head "${branch}" \
+              --title "docs: refresh observed upstream status" \
+              --body "Automated observation only. Review official upstream changes and follow the semantic update checklist in references/UPSTREAM_STATUS.md before changing a qualified baseline."
+          else
+            echo "Updated existing pull request: ${existing_pr}"
+          fi
+
+      - name: Synchronize upstream-review issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_CHECK_EXIT: ${{ steps.source-check.outputs.exit_code }}
+        run: |
+          title="Upstream documentation review required"
+          issue_number="$(gh issue list --state open --search "${title} in:title" --json number,title --jq '.[] | select(.title == "Upstream documentation review required") | .number' | head -1)"
+
+          if [ "${SOURCE_CHECK_EXIT}" != "0" ]; then
+            if [ -z "${issue_number}" ]; then
+              gh issue create \
+                --title "${title}" \
+                --body-file artifacts/upstream-source-check.txt
+            else
+              gh issue edit "${issue_number}" --body-file artifacts/upstream-source-check.txt
+            fi
+            echo "Upstream validation failed; a maintainer review issue is open." >&2
+            exit 1
+          fi
+
+          if [ -n "${issue_number}" ]; then
+            gh issue close "${issue_number}" --comment "Scheduled upstream validation is green. Closing the automated review issue."
+          fi
