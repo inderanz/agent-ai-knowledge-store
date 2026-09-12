@@ -1,0 +1,1 @@
+{"nodes": [{"id": "pkg_specula", "label": "specula", "file_type": "code", "type": "package", "ecosystem": "python", "source_file": "knowledge-repos/specula-org--Specula/pyproject.toml", "source_location": "L1", "version": "1.0.0"}], "edges": []}

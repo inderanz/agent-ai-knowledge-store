@@ -1,0 +1,4 @@
+interface:
+  display_name: "Author Enterprise Chapter"
+  short_description: "Write evidence-led production guidance"
+  default_prompt: "Use $author-enterprise-chapter to update this chapter and its exact official citations."

@@ -15,7 +15,7 @@
 | Tracked release baselines | 7 |
 | Release drifts requiring review | 0 |
 | Release-query errors | 0 |
-| Registered sources within review interval | 84 |
+| Registered sources within review interval | 106 |
 | Registered sources overdue | 0 |
 | Invalid source records | 0 |
 

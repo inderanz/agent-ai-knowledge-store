@@ -1,0 +1,4 @@
+interface:
+  display_name: "Synchronize Implementation"
+  short_description: "Keep prose, code, labs and runbooks aligned"
+  default_prompt: "Use $synchronize-implementation to update every implementation artifact affected by this documentation change."

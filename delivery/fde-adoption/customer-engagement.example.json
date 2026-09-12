@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "engagement_id": "synthetic-example",
+  "customer_id": "do-not-store-real-customer-identifiers-here",
+  "synthetic": true,
+  "current_level": 0,
+  "target_level": 4,
+  "outcome": {
+    "workflow": "Example bounded support workflow",
+    "baseline": "Example baseline pending customer measurement",
+    "target": "Example target pending customer approval",
+    "measurement_source": "Example customer system of record",
+    "owner": "example-product-owner",
+    "stop_condition": "Stop when safety or value threshold is not met"
+  },
+  "owners": {
+    "sponsor": "example-sponsor",
+    "product": "example-product-owner",
+    "technical": "example-technical-owner",
+    "security": "example-security-owner",
+    "data": "example-data-owner",
+    "sre": "example-sre-owner",
+    "risk": "example-risk-owner"
+  },
+  "use_cases": [{"id": "example-use-case", "decision": "discovery", "autonomy_level": 1}],
+  "gates": {
+    "research-architecture": {"passed": false, "evidence": []},
+    "implementation-supply-chain": {"passed": false, "evidence": []},
+    "security-data-responsible-ai": {"passed": false, "evidence": []},
+    "evaluation-reliability-cost": {"passed": false, "evidence": []},
+    "operations-recovery-support": {"passed": false, "evidence": []},
+    "delivery-adoption-handover": {"passed": false, "evidence": []}
+  },
+  "artifacts": [],
+  "customer_signoffs": [],
+  "handover_competencies": [],
+  "residual_risks": []
+}

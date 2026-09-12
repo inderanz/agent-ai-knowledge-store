@@ -23,8 +23,11 @@ REQUIRED_FILES = (
     "references/versions.json",
     "references/UPSTREAM_STATUS.md",
     "scripts/check_sources.py",
+    "scripts/build_maintenance_signal.py",
     "scripts/render_upstream_status.py",
+    "scripts/validate_skills.py",
     ".github/workflows/docs-quality.yml",
+    ".github/workflows/agentic-handbook-maintenance.yml",
     ".github/workflows/upstream-docs-refresh.yml",
     "adr/0000-template.md",
 )
@@ -39,6 +42,8 @@ REQUIRED_DIRECTORIES = (
     "references",
     "scripts",
     "tests",
+    "automation",
+    "skills",
     *(f"docs/volume-{number}" for number in ()),
 )
 

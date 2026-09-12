@@ -37,7 +37,7 @@ Every chapter issue identifies applicable artifacts. An artifact can be marked n
 | Delivery | GitHub Actions, Cloud Build, Artifact Registry, Cloud Deploy, promotion, rollback | Volume 2 build/promote, Volume 3 ADK qualification, and Volumes 4–10 local CI/qualification gates implemented; cloud execution pending |
 | Security | Threat model, IAM, identity, network, content, data, tool, supply chain, audit | Full Volume 5 control handbook and shared policy tests plus cross-volume coverage; customer and independent review pending |
 | Operations | Logs, metrics, traces, SLOs, alerts, runbooks, capacity, recovery, DR, cost | Volume 2–15 operations packs and reliability/control-plane tests implemented; cloud exercises pending |
-| Customer delivery | Story, discovery workshop, questions, decisions, FDE notebook, checklist | Full Volume 9 delivery system plus workshops/notebooks/checklists in Volumes 1–10; customer simulation pending |
+| Customer delivery | Story, discovery workshop, questions, decisions, FDE notebook, checklist | Full Volume 9 delivery system plus a seven-level adoption playbook, machine-checkable engagement record and workshops/notebooks/checklists; customer execution pending |
 | Labs | Setup, validation, failure injection, cleanup, troubleshooting | Executable/local Volume 2–15 labs implemented; customer sandbox evidence pending |
 | ADR | Context, options, decision, consequences, validation, evidence | Repository ADR plus full draft ADRs in Volumes 1 and 2 |
 
@@ -61,3 +61,4 @@ A chapter is substantive only when it:
 3. Build one production-shaped vertical slice across ADK, runtime, security, SRE, Terraform, CI/CD, and labs.
 4. Use that slice as the tested reference implementation for later chapters.
 5. Expand volumes in dependency order while the upstream-change workflow continuously revalidates Approved material.
+6. Use the agentic maintainer to propose evidence-led updates as Draft PRs; retain independent human publication authority.

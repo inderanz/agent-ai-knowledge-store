@@ -21,6 +21,9 @@ Research must precede writing. A contributor may update an existing draft only a
 python3 scripts/validate_repository.py
 python3 -m unittest discover -s tests -v
 python3 scripts/check_sources.py --offline
+python3 scripts/validate_skills.py skills
+PYTHONPATH=automation/fde-doc-maintainer/src \
+  python3 -m unittest discover -s automation/fde-doc-maintainer/tests -v
 ```
 
 Run `python3 scripts/check_sources.py` when network access is available.
@@ -28,6 +31,18 @@ Run `python3 scripts/check_sources.py` when network access is available.
 ## Pull request scope
 
 A chapter pull request should contain one chapter, its diagrams, its runnable code or Terraform, its lab, its ADR, and its source-registry changes. Do not combine unrelated volume work.
+
+## Agent-generated proposals
+
+Agentic maintenance opens Draft pull requests only. Treat the author output and
+the independent-agent verdict as untrusted proposal evidence. A human reviewer
+must verify official sources, inspect the complete diff, confirm component tests,
+resolve material findings and apply the normal six gates. Never approve because
+the manifest, model summary or generated citations appear internally consistent.
+
+Do not place customer confidential data, credentials, production traces, private
+support material or non-public product information in a maintenance signal,
+prompt, skill, candidate, pull request or workflow artifact.
 
 ## Review gates
 

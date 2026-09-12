@@ -1,0 +1,173 @@
+name: Agentic handbook maintenance
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/agentic-handbook-maintenance.yml"
+      - "automation/fde-doc-maintainer/**"
+      - "terraform/documentation-maintainer/**"
+      - "skills/**"
+      - "scripts/build_maintenance_signal.py"
+      - "tests/test_agentic_maintenance.py"
+  schedule:
+    - cron: "43 19 * * 1"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Detect only, or create an AI-authored draft proposal when drift exists
+        required: true
+        default: detect-only
+        type: choice
+        options: [detect-only, propose-draft]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agentic-handbook-maintenance
+  cancel-in-progress: false
+
+jobs:
+  detect-and-validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    outputs:
+      actionable: ${{ steps.signal.outputs.actionable }}
+      change_id: ${{ steps.signal.outputs.change_id }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
+        with:
+          terraform_version: "1.15.8"
+          terraform_wrapper: false
+      - name: Validate skills and deterministic maintainer policy
+        run: |
+          python3 scripts/validate_skills.py skills
+      - name: Run maintainer tests
+        env:
+          PYTHONPATH: automation/fde-doc-maintainer/src
+        run: |
+          python3 -m unittest discover -s automation/fde-doc-maintainer/tests -v
+          python3 -m unittest tests/test_agentic_maintenance.py -v
+      - name: Validate least-privilege maintainer identity
+        working-directory: terraform/documentation-maintainer
+        run: |
+          terraform fmt -check -recursive
+          terraform init -backend=false -input=false
+          terraform validate
+      - name: Compile the maintainer team against the qualified ADK
+        env:
+          PYTHONPATH: automation/fde-doc-maintainer/src
+          MODEL_NAME: gemini-flash-latest
+        run: |
+          python3 -m pip install --no-cache-dir -r automation/fde-doc-maintainer/requirements.txt
+          python3 -c 'from fde_doc_maintainer.agent import root_agent; assert root_agent.name == "fde_handbook_maintenance_orchestrator"'
+      - name: Build the current upstream signal
+        id: signal
+        run: |
+          mkdir -p artifacts
+          python3 scripts/build_maintenance_signal.py --output artifacts/maintenance-signal.json
+          echo "actionable=$(jq -r .actionable artifacts/maintenance-signal.json)" >> "${GITHUB_OUTPUT}"
+          echo "change_id=$(jq -r .change_id artifacts/maintenance-signal.json)" >> "${GITHUB_OUTPUT}"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: agentic-maintenance-signal
+          path: artifacts/maintenance-signal.json
+          retention-days: 30
+          if-no-files-found: error
+
+  propose-draft:
+    if: >-
+      needs.detect-and-validate.outputs.actionable == 'true' &&
+      vars.ENABLE_AGENTIC_DOC_PROPOSALS == 'true' &&
+      (github.event_name == 'schedule' || inputs.mode == 'propose-draft')
+    needs: detect-and-validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          name: agentic-maintenance-signal
+          path: artifacts
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: automation/fde-doc-maintainer/requirements.txt
+      - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
+        with:
+          workload_identity_provider: ${{ vars.DOC_MAINTAINER_WIF_PROVIDER }}
+          service_account: ${{ vars.DOC_MAINTAINER_SERVICE_ACCOUNT }}
+      - name: Run bounded ADK author and independent reviewer
+        env:
+          PYTHONPATH: automation/fde-doc-maintainer/src
+          FDE_REPOSITORY_ROOT: ${{ github.workspace }}
+          FDE_CANDIDATE_DIR: ${{ runner.temp }}/candidate
+          GOOGLE_CLOUD_PROJECT: ${{ vars.DOC_MAINTAINER_PROJECT }}
+          GOOGLE_CLOUD_LOCATION: ${{ vars.DOC_MAINTAINER_LOCATION }}
+          GOOGLE_GENAI_USE_VERTEXAI: "true"
+          MODEL_NAME: ${{ vars.DOC_MAINTAINER_MODEL }}
+        run: |
+          python3 -m pip install --no-cache-dir -r automation/fde-doc-maintainer/requirements.txt
+          python3 -m fde_doc_maintainer.cli run-agent \
+            --signal artifacts/maintenance-signal.json \
+            --output artifacts/agent-summary.md
+          python3 -m fde_doc_maintainer.cli validate --candidate "${FDE_CANDIDATE_DIR}"
+          python3 -m fde_doc_maintainer.cli apply \
+            --candidate "${FDE_CANDIDATE_DIR}" \
+            --repository "${GITHUB_WORKSPACE}" \
+            --for-draft-pr
+          cp "${FDE_CANDIDATE_DIR}/proposal.json" artifacts/proposal.json
+          cp "${FDE_CANDIDATE_DIR}/_evidence-receipts.json" artifacts/evidence-receipts.json
+      - name: Run repository qualification before publication proposal
+        env:
+          PYTHONPATH: automation/fde-doc-maintainer/src
+        run: |
+          python3 skills/qualify-handbook-change/scripts/run_gates.py --root "${GITHUB_WORKSPACE}"
+          git diff --check
+          test -n "$(git status --short)"
+      - name: Open or update a draft pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHANGE_ID: ${{ needs.detect-and-validate.outputs.change_id }}
+        run: |
+          branch="automation/agentic-${CHANGE_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "${branch}"
+          git add README.md SUMMARY.md ROADMAP.md docs diagrams assets examples terraform delivery labs operations references
+          git commit -m "docs: propose qualified upstream maintenance"
+          git fetch origin "${branch}" || true
+          git push --force-with-lease origin "HEAD:${branch}"
+          existing_pr="$(gh pr list --state open --head "${branch}" --json url --jq '.[0].url // empty')"
+          if [ -z "${existing_pr}" ]; then
+            gh pr create --draft --base main --head "${branch}" \
+              --title "docs: agentic upstream maintenance ${CHANGE_ID}" \
+              --body-file artifacts/agent-summary.md
+          else
+            echo "Updated existing draft pull request: ${existing_pr}"
+          fi
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: agentic-maintenance-evidence
+          path: |
+            artifacts/maintenance-signal.json
+            artifacts/proposal.json
+            artifacts/evidence-receipts.json
+            artifacts/agent-summary.md
+          retention-days: 90
+          if-no-files-found: error

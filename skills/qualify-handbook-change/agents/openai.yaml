@@ -1,0 +1,4 @@
+interface:
+  display_name: "Qualify Handbook Change"
+  short_description: "Run evidence and production-readiness gates"
+  default_prompt: "Use $qualify-handbook-change to qualify this handbook change before publication."

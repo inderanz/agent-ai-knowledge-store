@@ -3,6 +3,7 @@
 Only chapters marked **Approved** in [docs/STATUS.md](docs/STATUS.md) are production guidance. Draft links are provided for review, not operational use.
 
 - [Complete chapter and artifact inventory](docs/CHAPTER_INVENTORY.md)
+- [Repository knowledge graph and AI CLI playbook](docs/REPOSITORY_KNOWLEDGE_GRAPH_CLI_PLAYBOOK.md)
 
 ## Volume 1 — Foundations
 
@@ -70,6 +71,8 @@ Only chapters marked **Approved** in [docs/STATUS.md](docs/STATUS.md) are produc
 - [FDE engagement simulation](labs/volume-9-fde/README.md)
 - [FDE delivery operations](operations/volume-9-fde/README.md)
 - [Implementation evidence](references/implementation/volume-9-fde.md)
+- [Customer adoption playbook](docs/FDE_CUSTOMER_ADOPTION_PLAYBOOK.md)
+- [Machine-checkable customer adoption kit](delivery/fde-adoption/README.md)
 
 ## Volume 10 — Evolution and migrations
 
@@ -131,6 +134,11 @@ Only chapters marked **Approved** in [docs/STATUS.md](docs/STATUS.md) are produc
 ## Repository standards
 
 - [Research and review workflow](docs/RESEARCH_AND_REVIEW.md)
+- [Agentic documentation maintainer](automation/fde-doc-maintainer/README.md)
+- [Google FDE operating model](docs/GOOGLE_FDE_OPERATING_MODEL.md)
+- [Documentation maintainer operations](operations/fde-documentation-maintainer/README.md)
+- [Documentation maintainer identity Terraform](terraform/documentation-maintainer/README.md)
+- [Repository-owned agent skills](skills/research-official-agent-sources/SKILL.md)
 - [Chapter template](docs/templates/CHAPTER_TEMPLATE.md)
 - [ADR template](adr/0000-template.md)
 - [Diagram standard](diagrams/README.md)

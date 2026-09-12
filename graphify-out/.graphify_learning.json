@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-08-04T04:46:37.567023+00:00",
+  "nodes": {
+    "knowledge_repos_readme_public_repository_evidence_score": {
+      "code_fingerprint": "a0cbd58ad8df17e77df6d2646c7c8e606c116ecc0e972bec9f4d95eb7e6ac8ca",
+      "label": "Public Repository Evidence Score",
+      "last": "2026-08-04T04:37:47.551655+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-04T04:37:47.551655+00:00",
+          "outcome": "useful",
+          "q": "Query for the capability, not the vendor name."
+        }
+      ],
+      "score": 0.999858274,
+      "source_file": "knowledge-repos/README.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "knowledge_repos_readme_repository_evaluation_workflow": {
+      "code_fingerprint": "a0cbd58ad8df17e77df6d2646c7c8e606c116ecc0e972bec9f4d95eb7e6ac8ca",
+      "label": "Repository Evaluation Workflow",
+      "last": "2026-08-04T04:37:47.551655+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-04T04:37:47.551655+00:00",
+          "outcome": "useful",
+          "q": "Query for the capability, not the vendor name."
+        }
+      ],
+      "score": 0.999858274,
+      "source_file": "knowledge-repos/README.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "start_here_agentic_ai_fde_navigator": {
+      "code_fingerprint": "5408a35836c029e55e3c170db0fad19b562a682e8cc87b222b1c4df2afcb621f",
+      "label": "Agentic AI FDE Navigator",
+      "last": "2026-08-04T04:37:47.551655+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-04T04:37:47.551655+00:00",
+          "outcome": "useful",
+          "q": "Query for the capability, not the vendor name."
+        }
+      ],
+      "score": 0.999858274,
+      "source_file": "START_HERE.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "start_here_outcome_led_stack_selection": {
+      "code_fingerprint": "5408a35836c029e55e3c170db0fad19b562a682e8cc87b222b1c4df2afcb621f",
+      "label": "Outcome-led Default Stack Selection",
+      "last": "2026-08-04T04:37:47.551655+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-04T04:37:47.551655+00:00",
+          "outcome": "useful",
+          "q": "Query for the capability, not the vendor name."
+        }
+      ],
+      "score": 0.999858274,
+      "source_file": "START_HERE.md",
+      "status": "tentative",
+      "uses": 1
+    }
+  },
+  "version": 1
+}

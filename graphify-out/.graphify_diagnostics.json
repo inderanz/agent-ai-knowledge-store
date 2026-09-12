@@ -1,0 +1,193 @@
+{
+  "node_count": 1666,
+  "unverified_node_count": 0,
+  "raw_edge_count": 3022,
+  "non_object_edges": 0,
+  "missing_endpoint_edges": 0,
+  "dangling_endpoint_edges": 354,
+  "self_loop_edges": 0,
+  "valid_candidate_edges": 2668,
+  "exact_duplicate_edges": 21,
+  "directed_unique_endpoint_pairs": 2586,
+  "directed_same_endpoint_collapsed_edges": 82,
+  "undirected_unique_endpoint_pairs": 2581,
+  "undirected_same_endpoint_collapsed_edges": 87,
+  "same_endpoint_group_count": 78,
+  "relation_variant_groups": 52,
+  "source_file_variant_groups": 0,
+  "source_location_variant_groups": 0,
+  "context_variant_groups": 9,
+  "post_build_graph_type": "Graph",
+  "post_build_node_count": 1666,
+  "post_build_edge_count": 2589,
+  "post_build_error": "",
+  "producer_suppression": {
+    "path": "/Users/paraskanwar/.local/share/uv/tools/graphifyy/lib/python3.13/site-packages/graphify/extract.py",
+    "total_sites": 11,
+    "sites": [
+      {
+        "line": 1099,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids = {n[\"id\"] for n in nodes}"
+      },
+      {
+        "line": 1253,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids = {n[\"id\"] for n in nodes}"
+      },
+      {
+        "line": 1255,
+        "name": "seen_doc_refs",
+        "tuple_arity": 0,
+        "sample": "seen_doc_refs: set[str] = set()"
+      },
+      {
+        "line": 1600,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = {n[\"id\"] for n in nodes}"
+      },
+      {
+        "line": 2069,
+        "name": "seen_keys",
+        "tuple_arity": 0,
+        "sample": "seen_keys: set[tuple] = set()"
+      },
+      {
+        "line": 2147,
+        "name": "seen_keys",
+        "tuple_arity": 0,
+        "sample": "seen_keys: set[tuple] = set()"
+      },
+      {
+        "line": 3191,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 3299,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 3378,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 3893,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 3894,
+        "name": "seen_edges",
+        "tuple_arity": 4,
+        "sample": "seen_edges: set[tuple[str, str, str, str | None]] = set()"
+      }
+    ],
+    "error": ""
+  },
+  "examples": [
+    {
+      "source": "examples_python_platform_admission_src_platform_admission_app_create_app",
+      "target": "examples_python_platform_admission_src_platform_admission_identity_iapjwtverifier",
+      "edge_count": 3,
+      "relations": [
+        "calls",
+        "references"
+      ],
+      "source_files": [
+        "examples/python/platform-admission/src/platform_admission/app.py"
+      ],
+      "source_locations": [
+        "L50",
+        "L71"
+      ],
+      "contexts": [
+        "call",
+        "parameter_type"
+      ]
+    },
+    {
+      "source": "examples_python_platform_admission_src_platform_admission_repository_firestoredecisionrepository_create_or_get",
+      "target": "examples_python_platform_admission_src_platform_admission_repository_decisionrecord",
+      "edge_count": 3,
+      "relations": [
+        "calls",
+        "references"
+      ],
+      "source_files": [
+        "examples/python/platform-admission/src/platform_admission/repository.py"
+      ],
+      "source_locations": [
+        "L62",
+        "L82"
+      ],
+      "contexts": [
+        "call",
+        "generic_arg",
+        "parameter_type"
+      ]
+    },
+    {
+      "source": "scripts_build_maintenance_signal_build_signal",
+      "target": "scripts_build_maintenance_signal_py_any",
+      "edge_count": 3,
+      "relations": [
+        "references"
+      ],
+      "source_files": [
+        "scripts/build_maintenance_signal.py"
+      ],
+      "source_locations": [
+        "L16"
+      ],
+      "contexts": [
+        "generic_arg"
+      ]
+    },
+    {
+      "source": "scripts_build_whatsapp_link_research_build_report",
+      "target": "scripts_build_whatsapp_link_research_py_path",
+      "edge_count": 3,
+      "relations": [
+        "references"
+      ],
+      "source_files": [
+        "scripts/build_whatsapp_link_research.py"
+      ],
+      "source_locations": [
+        "L367"
+      ],
+      "contexts": [
+        "parameter_type"
+      ]
+    },
+    {
+      "source": "automation_fde_doc_maintainer_src_fde_doc_maintainer_init",
+      "target": "automation_fde_doc_maintainer_src_fde_doc_maintainer_models",
+      "edge_count": 2,
+      "relations": [
+        "imports_from",
+        "re_exports"
+      ],
+      "source_files": [
+        "automation/fde-doc-maintainer/src/fde_doc_maintainer/__init__.py"
+      ],
+      "source_locations": [
+        "L3"
+      ],
+      "contexts": [
+        "export",
+        "import"
+      ]
+    }
+  ]
+}

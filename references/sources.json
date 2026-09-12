@@ -756,6 +756,204 @@
       "owner": "volumes-11-15",
       "verified_at": "2026-08-02",
       "review_interval_days": 30
+    },
+    {
+      "id": "google-ai-ml-well-architected",
+      "title": "Google Cloud Well-Architected Framework AI and ML perspective",
+      "url": "https://docs.cloud.google.com/architecture/framework/perspectives/ai-ml",
+      "tier": 4,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "google-beyond-pilot-lessons-2026",
+      "title": "Google Cloud five lessons for scaling AI beyond pilots",
+      "url": "https://cloud.google.com/transform/beyond-the-pilot-five-hard-won-lessons-from-google-clouds-ai-transformation-strategy",
+      "tier": 4,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "google-multi-tenant-agentic-ai-architecture-2026",
+      "title": "Google Cloud multi-tenant agentic AI system reference architecture",
+      "url": "https://docs.cloud.google.com/architecture/multi-tenant-agentic-ai-system",
+      "tier": 4,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "google-adk-skills-2026",
+      "title": "Google ADK skills documentation",
+      "url": "https://adk.dev/skills/",
+      "tier": 1,
+      "owner": "documentation-maintenance",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "google-adk-evaluation-2026",
+      "title": "Google ADK evaluation documentation",
+      "url": "https://adk.dev/evaluate/",
+      "tier": 1,
+      "owner": "documentation-maintenance",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 14
+    },
+    {
+      "id": "openai-fde-role-2026",
+      "title": "OpenAI Forward Deployed Engineer public role",
+      "url": "https://openai.com/careers/forward-deployed-engineer-munich-munich-germany/",
+      "tier": 5,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "openai-deployment-company-2026",
+      "title": "OpenAI Deployment Company announcement",
+      "url": "https://openai.com/index/openai-launches-the-deployment-company/",
+      "tier": 5,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "anthropic-applied-ai-engineer-2026",
+      "title": "Anthropic Applied AI Engineer public role",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/5343697008",
+      "tier": 5,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "anthropic-building-effective-agents",
+      "title": "Anthropic Building effective agents",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "tier": 5,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "anthropic-demystifying-agent-evals-2026",
+      "title": "Anthropic Demystifying evals for AI agents",
+      "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "tier": 5,
+      "owner": "documentation-maintenance",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "openai-agents-python-observed-2026-08-02",
+      "title": "OpenAI Agents Python at observed commit",
+      "url": "https://github.com/openai/openai-agents-python/tree/fc084ae29cd751b801c2779c9ebd23ff6bad1668",
+      "tier": 2,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "openai-cookbook-observed-2026-08-02",
+      "title": "OpenAI Cookbook at observed commit",
+      "url": "https://github.com/openai/openai-cookbook/tree/0a796c4b95457a82dc090d0e31392deaf3b07f28",
+      "tier": 3,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "anthropic-cookbooks-observed-2026-08-02",
+      "title": "Anthropic Claude Cookbooks at observed commit",
+      "url": "https://github.com/anthropics/claude-cookbooks/tree/85016cacf5b7923aa62aa2b514399325e9d159e9",
+      "tier": 3,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "anthropic-skills-observed-2026-08-02",
+      "title": "Anthropic Skills at observed commit",
+      "url": "https://github.com/anthropics/skills/tree/b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+      "tier": 3,
+      "owner": "documentation-maintenance",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "google-wif-deployment-pipelines-2026",
+      "title": "Google Cloud Workload Identity Federation for deployment pipelines",
+      "url": "https://docs.cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines",
+      "tier": 1,
+      "owner": "documentation-maintenance",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "google-agent-platform-access-control-2026",
+      "title": "Google Cloud Agent Platform access control with IAM",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/machine-learning/general/access-control",
+      "tier": 1,
+      "owner": "documentation-maintenance",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "github-actions-oidc-claims-2026",
+      "title": "GitHub Actions OpenID Connect claim reference",
+      "url": "https://docs.github.com/en/actions/reference/security/oidc",
+      "tier": 2,
+      "owner": "documentation-maintenance",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
+    },
+    {
+      "id": "google-cloud-fde-genai-role-2026",
+      "title": "Google Cloud Forward Deployed Engineer, GenAI public role",
+      "url": "https://www.google.com/about/careers/applications/jobs/results/143358812177212102-forward-deployed-engineer-genai-google-cloud",
+      "tier": 5,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "google-cloud-fde-iv-role-2026",
+      "title": "Google Cloud Forward Deployed Engineer IV, GenAI public role",
+      "url": "https://www.google.com/about/careers/applications/jobs/results/143122286080074438-forward-deployed-engineer-iv/",
+      "tier": 5,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "google-cloud-gecx-fde-role-2026",
+      "title": "Google Cloud Gemini Enterprise Customer Experience FDE public role",
+      "url": "https://www.google.com/about/careers/applications/jobs/results/103848231200268998-forward-deployed-engineer/",
+      "tier": 5,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "google-deepmind-fde-role-2026",
+      "title": "Google DeepMind Forward Deployed Engineer public role",
+      "url": "https://www.google.com/about/careers/applications/jobs/results/76720917111022278-forward-deployed-engineer/",
+      "tier": 5,
+      "owner": "volume-9-fde",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 7
+    },
+    {
+      "id": "google-fde-gemini-enterprise-a2ui-2026",
+      "title": "Google Cloud FDE guide to Gemini Enterprise and A2UI integration",
+      "url": "https://cloud.google.com/blog/topics/developers-practitioners/guide-to-gemini-enterprise-and-a2ui-integration",
+      "tier": 4,
+      "owner": "volume-15-gemini-enterprise-app",
+      "verified_at": "2026-08-02",
+      "review_interval_days": 30
     }
   ]
 }

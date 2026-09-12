@@ -1,0 +1,11 @@
+# Do not recursively index Graphify's generated artifacts.
+graphify-out/
+
+# Keep raw private WhatsApp context out of semantic extraction. The sanitized
+# research report and navigation files remain in the corpus.
+whatsapp-links-Inder-Australia-2026-08-04.md
+
+# The curated repository index summarizes and links all 44 public clones. Avoid
+# indexing every cloned implementation and its duplicate documentation here.
+knowledge-repos/**
+!knowledge-repos/README.md

@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -53,6 +55,26 @@ class RepositoryValidationTests(unittest.TestCase):
 
 
 class SourceValidationTests(unittest.TestCase):
+    def test_network_check_uses_bounded_retry_and_http1(self) -> None:
+        completed = subprocess.CompletedProcess([], 0, stdout="", stderr="")
+        with patch.object(check_sources.subprocess, "run", return_value=completed) as run:
+            check_sources.curl("https://example.com", timeout=12)
+        command = run.call_args.args[0]
+        self.assertIn("--http1.1", command)
+        self.assertEqual(command[command.index("--retry") + 1], "2")
+        self.assertEqual(command[command.index("--connect-timeout") + 1], "10.0")
+
+    def test_github_token_is_passed_on_stdin_not_process_arguments(self) -> None:
+        completed = subprocess.CompletedProcess([], 0, stdout="{}", stderr="")
+        with patch.dict(os.environ, {"GITHUB_TOKEN": "test-token"}), patch.object(
+            check_sources.subprocess, "run", return_value=completed
+        ) as run:
+            check_sources.curl("https://api.github.com/repos/google/adk-python/releases/latest", 12, capture=True)
+        command = run.call_args.args[0]
+        self.assertNotIn("test-token", " ".join(command))
+        self.assertEqual(command[command.index("--config") + 1], "-")
+        self.assertIn("Authorization: Bearer test-token", run.call_args.kwargs["input"])
+
     def test_stale_source_is_detected(self) -> None:
         registry = {
             "sources": [

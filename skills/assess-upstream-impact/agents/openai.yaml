@@ -1,0 +1,4 @@
+interface:
+  display_name: "Assess Upstream Impact"
+  short_description: "Map upstream changes to repository impact"
+  default_prompt: "Use $assess-upstream-impact to map this upstream change to affected handbook and implementation artifacts."

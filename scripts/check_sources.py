@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -12,6 +13,7 @@ from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 
 USER_AGENT = "enterprise-agent-platform-handbook-source-check/1.0"
@@ -92,6 +94,12 @@ def curl(url: str, timeout: float, *, capture: bool = False) -> str:
         "--location",
         "--silent",
         "--show-error",
+        "--http1.1",
+        "--retry",
+        "2",
+        "--retry-all-errors",
+        "--connect-timeout",
+        str(min(timeout, 10.0)),
         "--max-time",
         str(timeout),
         "--user-agent",
@@ -99,8 +107,23 @@ def curl(url: str, timeout: float, *, capture: bool = False) -> str:
     ]
     if not capture:
         command.extend(["--output", "/dev/null"])
+    config = None
+    github_token = os.environ.get("GITHUB_TOKEN", "")
+    if urlparse(url).hostname == "api.github.com" and github_token:
+        if any(character in github_token for character in ('"', "\r", "\n")):
+            raise ValueError("GITHUB_TOKEN contains an invalid character")
+        # Pass the credential through curl's stdin config so it cannot appear in
+        # process arguments or CalledProcessError command output.
+        command.extend(["--config", "-"])
+        config = f'header = "Authorization: Bearer {github_token}"\n'
     command.append(url)
-    result = subprocess.run(command, check=True, capture_output=True, text=True)
+    result = subprocess.run(
+        command,
+        check=True,
+        capture_output=True,
+        text=True,
+        input=config,
+    )
     return result.stdout
 
 

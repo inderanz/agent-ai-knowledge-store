@@ -1,0 +1,1 @@
+{"nodes": [{"id": "pkg_hermes_webui", "label": "hermes-webui", "file_type": "code", "type": "package", "ecosystem": "python", "source_file": "knowledge-repos/nesquena--hermes-webui/pyproject.toml", "source_location": "L1"}], "edges": []}

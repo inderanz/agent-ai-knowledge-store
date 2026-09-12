@@ -1,0 +1,4 @@
+interface:
+  display_name: "Practicalize FDE Delivery"
+  short_description: "Turn guidance into customer delivery assets"
+  default_prompt: "Use $practicalize-fde-delivery to make this material executable in a real customer engagement."

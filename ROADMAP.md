@@ -14,6 +14,8 @@ The roadmap is issue-driven. Each volume receives a GitHub milestone; each chapt
 5. Terraform standards and reference modules.
 6. Python and testing standards.
 7. CI/CD and upstream freshness automation.
+8. Agentic draft-proposal maintenance with bounded skills and human publication control.
+9. Machine-checkable FDE customer adoption and competency transfer.
 
 ## Volume sequence
 
@@ -29,6 +31,8 @@ The roadmap is issue-driven. Each volume receives a GitHub milestone; each chapt
 | 8 — Industries | Regulated industry reference architectures and control overlays |
 | 9 — FDE | Discovery, workshops, delivery phases, decision records, and handover |
 | 10 — Evolution | Upgrades, deprecations, migrations, drift detection, and content lifecycle |
+| Shared FDE adoption system | Frame-to-evolve customer journey, production gates, measurable adoption and handover competency |
+| Shared maintenance system | Official-source signals, ADK skills, candidate isolation, independent review and draft-only PR automation |
 
 ## Definition of done
 

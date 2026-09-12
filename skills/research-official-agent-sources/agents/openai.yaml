@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Official Agent Sources"
+  short_description: "Build an official-source evidence packet"
+  default_prompt: "Use $research-official-agent-sources to research an agent-platform change using official evidence only."

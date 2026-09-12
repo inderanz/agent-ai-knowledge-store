@@ -42,6 +42,20 @@ A failed or stale source does not automatically rewrite prose or change the qual
 
 Automated checks cannot prove semantic accuracy. The named chapter owner remains accountable for interpreting release notes and product status.
 
+## Agentic proposal stage
+
+When explicitly enabled, `agentic-handbook-maintenance.yml` converts release
+drift and overdue review findings into a bounded change signal. The ADK author
+must load repository skills, fetch allowlisted official evidence, assess complete
+repository impact, stage candidate files outside the checkout and record exact
+content hashes. A separately instructed reviewer can approve only progression to
+a Draft pull request.
+
+The deterministic policy rejects undeclared files, protected paths, unfetched
+evidence, cross-vendor support for Google claims, missing risk gates, self-review
+and material unresolved findings. Human source, architecture, implementation,
+security, operations and customer-delivery review remains mandatory.
+
 ## Freshness policy
 
 - Fast-moving ADK, Agent Platform, model, preview, and release-note sources: recheck at least every 14 days.

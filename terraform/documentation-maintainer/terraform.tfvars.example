@@ -1,0 +1,7 @@
+project_id          = "fde-docs-prod-12345"
+project_number      = "123456789012"
+region              = "australia-southeast1"
+repository          = "inderanz/agent-ai-knowledge-store"
+repository_id       = "123456789"
+repository_owner_id = "12345678"
+workflow_ref        = "inderanz/agent-ai-knowledge-store/.github/workflows/agentic-handbook-maintenance.yml@refs/heads/main"

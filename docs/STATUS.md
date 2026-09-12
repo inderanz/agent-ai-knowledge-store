@@ -54,6 +54,8 @@ The draft source files remain at the repository root until their first review br
 | ADK delivery and operations | Volume 3 Cloud Build/GitHub CI, qualification validator, six-lab path, query catalogue and incident response implemented; cloud execution pending |
 | Volumes 4–10 shared production kit | Original 33 dependency-free tests now run inside the consolidated 47-test kit, plus 3 qualification-validator tests; CI added; customer cloud evidence pending |
 | Volumes 11–15 control-plane/app kit | 14 additional Registry/Gateway/Identity/Armor/app tests plus 3 fail-closed qualification-validator tests, five labs/operations/evidence ledgers, CI and validated Cloud Armor Terraform implemented; customer cloud evidence pending |
+| FDE customer adoption system | Seven-level frame-to-evolve playbook and machine-checkable engagement/production/handover gates implemented; real customer execution pending |
+| Agentic documentation maintenance | Six repository skills, bounded ADK author/reviewer, official-source/path/digest policy, deterministic tests, opt-in draft-PR workflow and operations runbook implemented; Vertex AI proposal run and human review pending |
 | Chapter-level security and SRE reviews | All volumes contain self-review content; independent review not started |
 | Approved production handbook | Not started |
 
